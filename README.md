@@ -1,6 +1,6 @@
 # Braza
 
-**Braza** is a fork of [Horusec](https://github.com/ZupIT/horusec) Open Source cli SAST.
+**Braza** is a fork of [ZupIT/Horusec](https://github.com/ZupIT/horusec) Open Source cli SAST.
 
 The original source code is copyrighted and owned by **ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA** currently released under Apache 2.0. 
 
