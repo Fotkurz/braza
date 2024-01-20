@@ -42,9 +42,9 @@ func TestSobelowStartAnalysis(t *testing.T) {
 
 		formatter.StartAnalysis("")
 
-		assert.Len(t, entity.AnalysisVulnerabilities, 4)
+		assert.Len(t, entity.Vulnerabilities, 4)
 
-		for _, v := range entity.AnalysisVulnerabilities {
+		for _, v := range entity.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.Sobelow, vuln.SecurityTool)

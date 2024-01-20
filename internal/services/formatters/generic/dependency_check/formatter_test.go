@@ -40,8 +40,8 @@ func TestStartGenericOwaspDependencyCheck(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 1)
-		for _, v := range analysis.AnalysisVulnerabilities {
+		assert.Len(t, analysis.Vulnerabilities, 1)
+		for _, v := range analysis.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.OwaspDependencyCheck, vuln.SecurityTool)
@@ -65,7 +65,7 @@ func TestStartGenericOwaspDependencyCheck(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 		assert.True(t, analysis.HasErrors(), "Expected errors on analysis")
 	})
 

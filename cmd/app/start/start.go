@@ -365,7 +365,7 @@ func (s *Start) executeAnalysisDirectory() (totalVulns int, err error) {
 func (s *Start) askIfRunInDirectorySelected(shouldAsk bool) error {
 	if shouldAsk {
 		response, err := s.prompt.Ask(
-			fmt.Sprintf("The folder selected is: [%s]. Proceed? [Y/n]", s.configs.ProjectPath),
+			fmt.Sprintf("Selected folder is: [%s]. Proceed? [Y/n]", s.configs.ProjectPath),
 			"Y")
 		if err != nil {
 			logger.LogWarnWithLevel(messages.MsgWarnWhenAskDirToRun, err.Error())
@@ -376,6 +376,7 @@ func (s *Start) askIfRunInDirectorySelected(shouldAsk bool) error {
 	return nil
 }
 
+// validateReplyOfAsk validates if answer is 'y'|'Y' for positive or 'n'|'N' for negative.
 func (s *Start) validateReplyOfAsk(response string) error {
 	if !strings.EqualFold(response, "y") && !strings.EqualFold(response, "n") {
 		logger.LogErrorWithLevel(messages.MsgErrorReplayWrong+response, errors.New("reply invalid"))

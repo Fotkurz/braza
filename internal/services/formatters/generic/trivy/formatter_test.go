@@ -55,9 +55,9 @@ func TestTrivyParseOutput(t *testing.T) {
 		service := formatters.NewFormatterService(newAnalysis, dockerAPIControllerMock, cfg)
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
-		assert.Len(t, newAnalysis.AnalysisVulnerabilities, totalVulnerabilitiesExpected)
+		assert.Len(t, newAnalysis.Vulnerabilities, totalVulnerabilitiesExpected)
 		hashesValidated := make(map[string]int, 0)
-		for _, v := range newAnalysis.AnalysisVulnerabilities {
+		for _, v := range newAnalysis.Vulnerabilities {
 			if hashesValidated[v.Vulnerability.VulnHash] == 0 {
 				hashesValidated[v.Vulnerability.VulnHash] = 1
 			} else {

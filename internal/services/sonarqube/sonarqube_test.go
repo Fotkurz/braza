@@ -32,7 +32,7 @@ func TestConvertVulnerabilityDataToSonarQube(t *testing.T) {
 			ID:        uuid.New(),
 			CreatedAt: time.Now(),
 			Status:    enumHorusec.Running,
-			AnalysisVulnerabilities: []analysis.AnalysisVulnerabilities{
+			Vulnerabilities: []analysis.Vulnerabilities{
 				{
 					Vulnerability: vulnerability.Vulnerability{
 						Line:     "1",

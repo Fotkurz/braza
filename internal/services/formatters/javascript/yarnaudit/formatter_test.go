@@ -42,9 +42,9 @@ func TestYarnAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 1)
+		assert.Len(t, analysis.Vulnerabilities, 1)
 
-		for _, v := range analysis.AnalysisVulnerabilities {
+		for _, v := range analysis.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.YarnAudit, vuln.SecurityTool)
@@ -70,7 +70,7 @@ func TestYarnAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 		assert.False(t, analysis.HasErrors(), "Expected no errors on analysis")
 	})
 
@@ -85,7 +85,7 @@ func TestYarnAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 		assert.True(t, analysis.HasErrors(), "Expected errors on analysis")
 	})
 
@@ -100,7 +100,7 @@ func TestYarnAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 		assert.True(t, analysis.HasErrors(), "Expected errors on analysis")
 	})
 
@@ -129,7 +129,7 @@ func TestYarnAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 		assert.True(t, analysis.HasErrors(), "Expected errors on analysis")
 	})
 	t.Run("Should not execute tool because it's ignored", func(t *testing.T) {

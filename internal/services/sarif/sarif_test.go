@@ -34,7 +34,7 @@ func TestConvertVulnerabilityDataToSarif(t *testing.T) {
 			ID:        uuid.New(),
 			CreatedAt: time.Now(),
 			Status:    analysisenum.Success,
-			AnalysisVulnerabilities: []analysis.AnalysisVulnerabilities{
+			Vulnerabilities: []analysis.Vulnerabilities{
 				{
 					Vulnerability: vulnerability.Vulnerability{
 						Line:         "1",
@@ -61,7 +61,7 @@ func TestConvertVulnerabilityDataToSarif(t *testing.T) {
 			ID:        uuid.New(),
 			CreatedAt: time.Now(),
 			Status:    analysisenum.Success,
-			AnalysisVulnerabilities: []analysis.AnalysisVulnerabilities{
+			Vulnerabilities: []analysis.Vulnerabilities{
 				{
 					Vulnerability: vulnerability.Vulnerability{
 						Line:         "1",

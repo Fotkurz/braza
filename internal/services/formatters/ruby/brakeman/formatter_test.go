@@ -42,9 +42,9 @@ func TestParseBrakemanOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 4)
+		assert.Len(t, analysis.Vulnerabilities, 4)
 
-		for _, v := range analysis.AnalysisVulnerabilities {
+		for _, v := range analysis.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.Brakeman, vuln.SecurityTool)
@@ -70,7 +70,7 @@ func TestParseBrakemanOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 	})
 
 	t.Run("Should add error rails not found on analysis when parse output to analysis", func(t *testing.T) {

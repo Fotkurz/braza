@@ -172,11 +172,11 @@ func (a *Analyzer) logWarnIfHashDontExistsInConfig(configHashes []string) {
 	for _, configHash := range configHashes {
 		exists := false
 
-		for vulnIndex := range a.analysis.AnalysisVulnerabilities {
+		for vulnIndex := range a.analysis.Vulnerabilities {
 			// See vulnerability.Vulnerability.DeprecatedHashes docs for more info.
-			hashes := make([]string, len(a.analysis.AnalysisVulnerabilities[vulnIndex].Vulnerability.DeprecatedHashes)+1)
-			hashes = append(hashes, a.analysis.AnalysisVulnerabilities[vulnIndex].Vulnerability.DeprecatedHashes...)
-			hashes = append(hashes, a.analysis.AnalysisVulnerabilities[vulnIndex].Vulnerability.VulnHash)
+			hashes := make([]string, len(a.analysis.Vulnerabilities[vulnIndex].Vulnerability.DeprecatedHashes)+1)
+			hashes = append(hashes, a.analysis.Vulnerabilities[vulnIndex].Vulnerability.DeprecatedHashes...)
+			hashes = append(hashes, a.analysis.Vulnerabilities[vulnIndex].Vulnerability.VulnHash)
 			if a.contains(hashes, configHash) {
 				exists = true
 				break
@@ -224,12 +224,12 @@ func (a *Analyzer) setAnalysisError(err error) {
 //
 // nolint:lll
 func (a *Analyzer) SetFalsePositivesAndRiskAcceptInVulnerabilities(falsePositive, riskAccept []string) *analysis.Analysis {
-	for idx := range a.analysis.AnalysisVulnerabilities {
+	for idx := range a.analysis.Vulnerabilities {
 		a.setVulnerabilityType(
-			&a.analysis.AnalysisVulnerabilities[idx].Vulnerability, falsePositive, enumsVulnerability.FalsePositive,
+			&a.analysis.Vulnerabilities[idx].Vulnerability, falsePositive, enumsVulnerability.FalsePositive,
 		)
 		a.setVulnerabilityType(
-			&a.analysis.AnalysisVulnerabilities[idx].Vulnerability, riskAccept, enumsVulnerability.RiskAccepted,
+			&a.analysis.Vulnerabilities[idx].Vulnerability, riskAccept, enumsVulnerability.RiskAccepted,
 		)
 	}
 	return a.analysis
@@ -266,10 +266,10 @@ func (a *Analyzer) setAnalysisFinishedData() *analysis.Analysis {
 }
 
 func (a *Analyzer) setupIDInAnalysisContents() *analysis.Analysis {
-	for key := range a.analysis.AnalysisVulnerabilities {
-		a.analysis.AnalysisVulnerabilities[key].SetCreatedAt()
-		a.analysis.AnalysisVulnerabilities[key].SetAnalysisID(a.analysis.ID)
-		a.analysis.AnalysisVulnerabilities[key].Vulnerability.VulnerabilityID = uuid.New()
+	for key := range a.analysis.Vulnerabilities {
+		a.analysis.Vulnerabilities[key].SetCreatedAt()
+		a.analysis.Vulnerabilities[key].SetAnalysisID(a.analysis.ID)
+		a.analysis.Vulnerabilities[key].Vulnerability.VulnerabilityID = uuid.New()
 	}
 	return a.analysis
 }
@@ -281,7 +281,7 @@ func (a *Analyzer) sortVulnerabilitiesByCriticality() *analysis.Analysis {
 	analysisVulnerabilities = append(analysisVulnerabilities, a.getVulnerabilitiesBySeverity(severities.Low)...)
 	analysisVulnerabilities = append(analysisVulnerabilities, a.getVulnerabilitiesBySeverity(severities.Unknown)...)
 	analysisVulnerabilities = append(analysisVulnerabilities, a.getVulnerabilitiesBySeverity(severities.Info)...)
-	a.analysis.AnalysisVulnerabilities = analysisVulnerabilities
+	a.analysis.Vulnerabilities = analysisVulnerabilities
 	return a.analysis
 }
 
@@ -296,7 +296,7 @@ func (a *Analyzer) sortVulnerabilitiesByType() *analysis.Analysis {
 	analysisVulnerabilities = append(analysisVulnerabilities,
 		a.getVulnerabilitiesByType(enumsVulnerability.Corrected)...,
 	)
-	a.analysis.AnalysisVulnerabilities = analysisVulnerabilities
+	a.analysis.Vulnerabilities = analysisVulnerabilities
 	return a.analysis
 }
 
@@ -304,16 +304,16 @@ func (a *Analyzer) sortVulnerabilitiesByType() *analysis.Analysis {
 // and join the details in only one vulnerability
 func (a *Analyzer) joinAllVulnerabilitiesOfSameToolAndHash() *analysis.Analysis {
 	newAnalysisVulnerabilities := a.getAllVulnerabilitiesWithDetailsJoined()
-	a.analysis.AnalysisVulnerabilities = a.setCounterOfDetailsDuplicated(newAnalysisVulnerabilities)
+	a.analysis.Vulnerabilities = a.setCounterOfDetailsDuplicated(newAnalysisVulnerabilities)
 	return a.analysis
 }
 
 func (a *Analyzer) getVulnerabilitiesByType(
 	vulnType enumsVulnerability.Type,
-) (response []analysis.AnalysisVulnerabilities) {
-	for index := range a.analysis.AnalysisVulnerabilities {
-		if a.analysis.AnalysisVulnerabilities[index].Vulnerability.Type == vulnType {
-			response = append(response, a.analysis.AnalysisVulnerabilities[index])
+) (response []analysis.Vulnerabilities) {
+	for index := range a.analysis.Vulnerabilities {
+		if a.analysis.Vulnerabilities[index].Vulnerability.Type == vulnType {
+			response = append(response, a.analysis.Vulnerabilities[index])
 		}
 	}
 	return response
@@ -321,60 +321,60 @@ func (a *Analyzer) getVulnerabilitiesByType(
 
 func (a *Analyzer) getVulnerabilitiesBySeverity(
 	search severities.Severity,
-) (response []analysis.AnalysisVulnerabilities) {
-	for index := range a.analysis.AnalysisVulnerabilities {
-		if a.analysis.AnalysisVulnerabilities[index].Vulnerability.Severity == search {
-			response = append(response, a.analysis.AnalysisVulnerabilities[index])
+) (response []analysis.Vulnerabilities) {
+	for index := range a.analysis.Vulnerabilities {
+		if a.analysis.Vulnerabilities[index].Vulnerability.Severity == search {
+			response = append(response, a.analysis.Vulnerabilities[index])
 		}
 	}
 	return response
 }
 
 func (a *Analyzer) setDefaultVulnerabilityType() *analysis.Analysis {
-	for key := range a.analysis.AnalysisVulnerabilities {
-		a.analysis.AnalysisVulnerabilities[key].Vulnerability.Type = enumsVulnerability.Vulnerability
+	for key := range a.analysis.Vulnerabilities {
+		a.analysis.Vulnerabilities[key].Vulnerability.Type = enumsVulnerability.Vulnerability
 	}
 	return a.analysis
 }
 
 func (a *Analyzer) setDefaultConfidence() *analysis.Analysis {
-	for key := range a.analysis.AnalysisVulnerabilities {
+	for key := range a.analysis.Vulnerabilities {
 		valid := false
 		for _, conf := range confidence.Values() {
-			if conf == a.analysis.AnalysisVulnerabilities[key].Vulnerability.Confidence {
+			if conf == a.analysis.Vulnerabilities[key].Vulnerability.Confidence {
 				valid = true
 				break
 			}
 		}
 		if !valid {
-			a.analysis.AnalysisVulnerabilities[key].Vulnerability.Confidence = confidence.Low
+			a.analysis.Vulnerabilities[key].Vulnerability.Confidence = confidence.Low
 		}
 	}
 	return a.analysis
 }
 
 func (a *Analyzer) removeInfoVulnerabilities() *analysis.Analysis {
-	var vulnerabilities []analysis.AnalysisVulnerabilities
+	var vulnerabilities []analysis.Vulnerabilities
 
-	for index := range a.analysis.AnalysisVulnerabilities {
-		if a.analysis.AnalysisVulnerabilities[index].Vulnerability.Severity != severities.Info {
-			vulnerabilities = append(vulnerabilities, a.analysis.AnalysisVulnerabilities[index])
+	for index := range a.analysis.Vulnerabilities {
+		if a.analysis.Vulnerabilities[index].Vulnerability.Severity != severities.Info {
+			vulnerabilities = append(vulnerabilities, a.analysis.Vulnerabilities[index])
 		}
 	}
 
-	a.analysis.AnalysisVulnerabilities = vulnerabilities
+	a.analysis.Vulnerabilities = vulnerabilities
 
 	return a.analysis
 }
 
 // nolint: funlen,gocyclo
 func (a *Analyzer) removeVulnerabilitiesBySeverity() *analysis.Analysis {
-	var vulnerabilities []analysis.AnalysisVulnerabilities
+	var vulnerabilities []analysis.Vulnerabilities
 	severitiesToIgnore := a.config.SeveritiesToIgnore
 
 outer:
-	for index := range a.analysis.AnalysisVulnerabilities {
-		vuln := a.analysis.AnalysisVulnerabilities[index]
+	for index := range a.analysis.Vulnerabilities {
+		vuln := a.analysis.Vulnerabilities[index]
 		for _, severity := range severitiesToIgnore {
 			// Force to print INFO vulnerabilities when information severity is enabled.
 			if severity == severities.Info.ToString() && a.config.EnableInformationSeverity {
@@ -387,24 +387,24 @@ outer:
 		}
 		vulnerabilities = append(vulnerabilities, vuln)
 	}
-	a.analysis.AnalysisVulnerabilities = vulnerabilities
+	a.analysis.Vulnerabilities = vulnerabilities
 	return a.analysis
 }
 
 func (a *Analyzer) removeVulnerabilitiesByTypes() *analysis.Analysis {
-	var vulnerabilities []analysis.AnalysisVulnerabilities
+	var vulnerabilities []analysis.Vulnerabilities
 
-	for index := range a.analysis.AnalysisVulnerabilities {
-		vulnType := a.analysis.AnalysisVulnerabilities[index].Vulnerability.Type
+	for index := range a.analysis.Vulnerabilities {
+		vulnType := a.analysis.Vulnerabilities[index].Vulnerability.Type
 		for _, acceptedType := range a.config.ShowVulnerabilitiesTypes {
 			if strings.EqualFold(vulnType.ToString(), acceptedType) {
-				vulnerabilities = append(vulnerabilities, a.analysis.AnalysisVulnerabilities[index])
+				vulnerabilities = append(vulnerabilities, a.analysis.Vulnerabilities[index])
 				break
 			}
 		}
 	}
 
-	a.analysis.AnalysisVulnerabilities = vulnerabilities
+	a.analysis.Vulnerabilities = vulnerabilities
 
 	return a.analysis
 }
@@ -417,7 +417,7 @@ func (a *Analyzer) setUpdateHashWarnings() {
 	isPrintDepreciationMsg := true
 	configHashes := a.getAllConfigHashes()
 
-	vulnerabilities := a.analysis.AnalysisVulnerabilities
+	vulnerabilities := a.analysis.Vulnerabilities
 	for vulnIndex := range vulnerabilities {
 		for _, deprecatedHash := range vulnerabilities[vulnIndex].Vulnerability.DeprecatedHashes {
 			for _, configHash := range configHashes {
@@ -475,10 +475,10 @@ func (a *Analyzer) isWarning(err string) bool {
 // already exists in list of the vulnerabilities, if is duplicated, so, it will only join both details.
 // nolint:funlen,gocyclo // Breaking this function will make it more confusing
 func (a *Analyzer) getAllVulnerabilitiesWithDetailsJoined() (
-	newAnalysisVulnerabilities []analysis.AnalysisVulnerabilities,
+	newAnalysisVulnerabilities []analysis.Vulnerabilities,
 ) {
-	for currentIndex := range a.analysis.AnalysisVulnerabilities {
-		currentAV := a.analysis.AnalysisVulnerabilities[currentIndex]
+	for currentIndex := range a.analysis.Vulnerabilities {
+		currentAV := a.analysis.Vulnerabilities[currentIndex]
 		exists := false
 		for newIndex := range newAnalysisVulnerabilities {
 			newAV := newAnalysisVulnerabilities[newIndex]
@@ -502,8 +502,8 @@ func (a *Analyzer) getAllVulnerabilitiesWithDetailsJoined() (
 // for the detailsHeaderText separator constant and will update to add a counter of the details in this vulnerability.
 // nolint:funlen,gocyclo // Breaking this function will make it more confusing
 func (a *Analyzer) setCounterOfDetailsDuplicated(
-	analysisVulnerabilities []analysis.AnalysisVulnerabilities,
-) (newAnalysisVulnerabilities []analysis.AnalysisVulnerabilities) {
+	analysisVulnerabilities []analysis.Vulnerabilities,
+) (newAnalysisVulnerabilities []analysis.Vulnerabilities) {
 	for indexAV := range analysisVulnerabilities {
 		currentAV := analysisVulnerabilities[indexAV]
 		newDetails := ""

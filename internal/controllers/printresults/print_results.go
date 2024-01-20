@@ -174,11 +174,11 @@ func (pr *PrintResults) printResultsSonarQube() error {
 }
 
 func (pr *PrintResults) checkIfExistVulnerabilityOrNoSec() {
-	for key := range pr.analysis.AnalysisVulnerabilities {
-		vuln := pr.analysis.AnalysisVulnerabilities[key].Vulnerability
+	for key := range pr.analysis.Vulnerabilities {
+		vuln := pr.analysis.Vulnerabilities[key].Vulnerability
 		pr.validateVulnerabilityToCheckTotalErrors(&vuln)
 	}
-	pr.logSeparator(len(pr.analysis.AnalysisVulnerabilities) > 0)
+	pr.logSeparator(len(pr.analysis.Vulnerabilities) > 0)
 }
 
 func (pr *PrintResults) validateVulnerabilityToCheckTotalErrors(vuln *vulnerability.Vulnerability) {
@@ -247,8 +247,8 @@ func (pr *PrintResults) truncateAndWriteFile(content []byte, f *os.File) error {
 }
 
 func (pr *PrintResults) printTextOutputVulnerability() {
-	for index := range pr.analysis.AnalysisVulnerabilities {
-		vuln := pr.analysis.AnalysisVulnerabilities[index].Vulnerability
+	for index := range pr.analysis.Vulnerabilities {
+		vuln := pr.analysis.Vulnerabilities[index].Vulnerability
 		pr.printTextOutputVulnerabilityData(&vuln)
 	}
 
@@ -278,8 +278,8 @@ func (pr *PrintResults) printTotalVulnerabilities() {
 func (pr *PrintResults) getTotalVulnsBySeverity() map[vulnerabilityenum.Type]map[severities.Severity]int {
 	total := pr.getDefaultTotalVulnBySeverity()
 
-	for index := range pr.analysis.AnalysisVulnerabilities {
-		vuln := pr.analysis.AnalysisVulnerabilities[index].Vulnerability
+	for index := range pr.analysis.Vulnerabilities {
+		vuln := pr.analysis.Vulnerabilities[index].Vulnerability
 		total[vuln.Type][vuln.Severity]++
 	}
 

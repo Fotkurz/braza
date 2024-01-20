@@ -35,18 +35,18 @@ import (
 // nolint: funlen
 func CreateAnalysisMock() *analysis.Analysis {
 	mock := &analysis.Analysis{
-		ID:                      uuid.New(),
-		RepositoryID:            uuid.New(),
-		WorkspaceID:             uuid.New(),
-		Status:                  analysisenum.Success,
-		Errors:                  "",
-		CreatedAt:               time.Now(),
-		FinishedAt:              time.Now(),
-		AnalysisVulnerabilities: []analysis.AnalysisVulnerabilities{},
+		ID:              uuid.New(),
+		RepositoryID:    uuid.New(),
+		WorkspaceID:     uuid.New(),
+		Status:          analysisenum.Success,
+		Errors:          "",
+		CreatedAt:       time.Now(),
+		FinishedAt:      time.Now(),
+		Vulnerabilities: []analysis.Vulnerabilities{},
 	}
 	vuls := ReturnEachTypeOfVulnerability()
 	for key := range vuls {
-		mock.AnalysisVulnerabilities = append(mock.AnalysisVulnerabilities, analysis.AnalysisVulnerabilities{
+		mock.Vulnerabilities = append(mock.Vulnerabilities, analysis.Vulnerabilities{
 			VulnerabilityID: vuls[key].VulnerabilityID,
 			AnalysisID:      mock.ID,
 			Vulnerability:   vuls[key],

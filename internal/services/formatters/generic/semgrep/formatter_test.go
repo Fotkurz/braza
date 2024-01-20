@@ -42,7 +42,7 @@ func TestParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 1)
+		assert.Len(t, analysis.Vulnerabilities, 1)
 	})
 
 	t.Run("Should return 1 vulnerabilities with no errors", func(t *testing.T) {
@@ -57,7 +57,7 @@ func TestParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 1)
+		assert.Len(t, analysis.Vulnerabilities, 1)
 	})
 
 	t.Run("Should return 1 vulnerabilities with no errors", func(t *testing.T) {
@@ -72,7 +72,7 @@ func TestParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 1)
+		assert.Len(t, analysis.Vulnerabilities, 1)
 	})
 
 	t.Run("Should return error when invalid output", func(t *testing.T) {

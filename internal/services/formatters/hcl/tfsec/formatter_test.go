@@ -41,8 +41,8 @@ func TestTFSecParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 5)
-		for _, v := range analysis.AnalysisVulnerabilities {
+		assert.Len(t, analysis.Vulnerabilities, 5)
+		for _, v := range analysis.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.TfSec, vuln.SecurityTool)

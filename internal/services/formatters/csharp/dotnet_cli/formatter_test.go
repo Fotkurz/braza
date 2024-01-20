@@ -46,9 +46,9 @@ func TestParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, newAnalysis.AnalysisVulnerabilities, 3)
+		assert.Len(t, newAnalysis.Vulnerabilities, 3)
 
-		for _, v := range newAnalysis.AnalysisVulnerabilities {
+		for _, v := range newAnalysis.Vulnerabilities {
 			vuln := v.Vulnerability
 			assert.Equal(t, tools.DotnetCli, vuln.SecurityTool)
 			assert.Equal(t, languages.CSharp, vuln.Language)
@@ -78,7 +78,7 @@ func TestParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, newAnalysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, newAnalysis.Vulnerabilities, 0)
 		assert.False(t, newAnalysis.HasErrors(), "Expected no errors on analysis")
 	})
 

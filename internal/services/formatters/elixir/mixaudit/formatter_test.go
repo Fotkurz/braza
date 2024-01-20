@@ -41,9 +41,9 @@ func TestStartCFlawfinder(t *testing.T) {
 		formatter.StartAnalysis("")
 
 		assert.NotEmpty(t, entity)
-		assert.Len(t, entity.AnalysisVulnerabilities, 1)
+		assert.Len(t, entity.Vulnerabilities, 1)
 
-		for _, v := range entity.AnalysisVulnerabilities {
+		for _, v := range entity.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.MixAudit, vuln.SecurityTool)

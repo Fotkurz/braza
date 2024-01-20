@@ -45,9 +45,9 @@ func TestParseOutput(t *testing.T) {
 		formatter := scs.NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 4)
+		assert.Len(t, analysis.Vulnerabilities, 4)
 
-		for _, v := range analysis.AnalysisVulnerabilities {
+		for _, v := range analysis.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.SecurityCodeScan, vuln.SecurityTool)

@@ -69,7 +69,7 @@ func TestPrintResultsStartPrintResults(t *testing.T) {
 			name: "Should not return error using default output type text",
 			cfg:  config.Config{},
 			analysis: entitiesAnalysis.Analysis{
-				AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
+				Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
 			},
 		},
 		{
@@ -81,7 +81,7 @@ func TestPrintResultsStartPrintResults(t *testing.T) {
 				},
 			},
 			analysis: entitiesAnalysis.Analysis{
-				AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{
+				Vulnerabilities: []entitiesAnalysis.Vulnerabilities{
 					{
 						VulnerabilityID: uuid.MustParse("57bf7b03-b504-42ed-a026-ea89c81b7f4a"),
 						AnalysisID:      uuid.MustParse("16c70059-aa76-4b00-87d6-ad9941f8603e"),
@@ -131,8 +131,8 @@ func TestPrintResultsStartPrintResults(t *testing.T) {
 			name: "Should return not errors because exists error in analysis",
 			cfg:  config.Config{},
 			analysis: entitiesAnalysis.Analysis{
-				AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
-				Errors:                  "Exists an error when read analysis",
+				Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
+				Errors:          "Exists an error when read analysis",
 			},
 		},
 		{

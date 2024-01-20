@@ -34,8 +34,8 @@ func NewSonarQube(analysiss *analysis.Analysis) *SonarQube {
 
 func (sq *SonarQube) ConvertVulnerabilityToSonarQube() (report Report) {
 	report.Issues = []Issue{}
-	for index := range sq.analysis.AnalysisVulnerabilities {
-		vuln := sq.analysis.AnalysisVulnerabilities[index].Vulnerability
+	for index := range sq.analysis.Vulnerabilities {
+		vuln := sq.analysis.Vulnerabilities[index].Vulnerability
 
 		issue := sq.formatReportStruct(&vuln)
 

@@ -111,8 +111,8 @@ func TestAnalyzerSetFalsePositivesAndRiskAcceptInVulnerabilities(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			analyzer := New(config.New())
 
-			analyzer.analysis.AnalysisVulnerabilities = append(
-				analyzer.analysis.AnalysisVulnerabilities, analysis.AnalysisVulnerabilities{
+			analyzer.analysis.Vulnerabilities = append(
+				analyzer.analysis.Vulnerabilities, analysis.Vulnerabilities{
 					AnalysisID:    uuid.New(),
 					Vulnerability: tt.vulnerability,
 				},
@@ -133,7 +133,7 @@ func TestAnalyzerSetFalsePositivesAndRiskAcceptInVulnerabilities(t *testing.T) {
 
 			analyzer.SetFalsePositivesAndRiskAcceptInVulnerabilities(falsePositiveHashes, riskAcceptHashes)
 
-			for _, vuln := range analyzer.analysis.AnalysisVulnerabilities {
+			for _, vuln := range analyzer.analysis.Vulnerabilities {
 				assert.Equal(t, tt.expectedType, vuln.Vulnerability.Type)
 			}
 		})
@@ -348,8 +348,8 @@ func TestAnalyze(t *testing.T) {
 		horusecAPI.On("GetAnalysis").Return(new(analysis.Analysis), nil)
 
 		analysiss := new(analysis.Analysis)
-		analysiss.AnalysisVulnerabilities = append(
-			analysiss.AnalysisVulnerabilities, analysis.AnalysisVulnerabilities{
+		analysiss.Vulnerabilities = append(
+			analysiss.Vulnerabilities, analysis.Vulnerabilities{
 				Vulnerability: vulnerability.Vulnerability{
 					Severity: severities.Info,
 				},
@@ -372,6 +372,6 @@ func TestAnalyze(t *testing.T) {
 		_, err := analyzer.Analyze()
 		require.NoError(t, err, "Expected no error to execute analysis")
 
-		assert.Len(t, analysiss.AnalysisVulnerabilities, 1, "Expected that analysis contains info vulnerabilities")
+		assert.Len(t, analysiss.Vulnerabilities, 1, "Expected that analysis contains info vulnerabilities")
 	})
 }

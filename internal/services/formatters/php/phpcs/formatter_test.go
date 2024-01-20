@@ -66,7 +66,7 @@ func TestStartPHPCodeSniffer(t *testing.T) {
 		formatter.StartAnalysis("")
 
 		totalBySeverity := map[severities.Severity]int{}
-		for _, v := range analysis.AnalysisVulnerabilities {
+		for _, v := range analysis.Vulnerabilities {
 			totalBySeverity[v.Vulnerability.Severity]++
 		}
 		assert.Equal(t, 0, totalBySeverity[severities.Unknown])
@@ -87,7 +87,7 @@ func TestStartPHPCodeSniffer(t *testing.T) {
 		formatter := NewFormatter(service)
 
 		formatter.StartAnalysis("")
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 	})
 
 	t.Run("should return error when invalid output", func(t *testing.T) {

@@ -52,7 +52,7 @@ func TestParseOutput(t *testing.T) {
 			formatter.StartAnalysis("")
 		})
 
-		assert.Equal(t, 7, len(analysis.AnalysisVulnerabilities))
+		assert.Equal(t, 7, len(analysis.Vulnerabilities))
 	})
 	t.Run("Should success parse output empty to analysis", func(t *testing.T) {
 		analysis := &entitiesAnalysis.Analysis{}
@@ -74,7 +74,7 @@ func TestParseOutput(t *testing.T) {
 			formatter.StartAnalysis("")
 		})
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 	})
 	t.Run("Should error rails not found when parse output to analysis", func(t *testing.T) {
 		analysis := &entitiesAnalysis.Analysis{}

@@ -95,9 +95,9 @@ func TestParseFindingsToVulnerabilities(t *testing.T) {
 		},
 	}
 
-	require.Len(t, analysis.AnalysisVulnerabilities, len(expectedVulnerabilities))
+	require.Len(t, analysis.Vulnerabilities, len(expectedVulnerabilities))
 	for idx := range expectedVulnerabilities {
-		assert.Equal(t, expectedVulnerabilities[idx], analysis.AnalysisVulnerabilities[idx].Vulnerability)
+		assert.Equal(t, expectedVulnerabilities[idx], analysis.Vulnerabilities[idx].Vulnerability)
 	}
 }
 

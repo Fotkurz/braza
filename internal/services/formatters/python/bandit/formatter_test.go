@@ -34,13 +34,13 @@ import (
 
 func getAnalysis() *entitiesAnalysis.Analysis {
 	return &entitiesAnalysis.Analysis{
-		ID:                      uuid.New(),
-		RepositoryID:            uuid.New(),
-		WorkspaceID:             uuid.New(),
-		Status:                  enumHorusec.Running,
-		Errors:                  "",
-		CreatedAt:               time.Now(),
-		AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
+		ID:              uuid.New(),
+		RepositoryID:    uuid.New(),
+		WorkspaceID:     uuid.New(),
+		Status:          enumHorusec.Running,
+		Errors:          "",
+		CreatedAt:       time.Now(),
+		Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
 	}
 }
 

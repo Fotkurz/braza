@@ -41,8 +41,8 @@ func TestNpmAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Equal(t, 1, len(analysis.AnalysisVulnerabilities))
-		for _, v := range analysis.AnalysisVulnerabilities {
+		assert.Equal(t, 1, len(analysis.Vulnerabilities))
+		for _, v := range analysis.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.NpmAudit, vuln.SecurityTool)
@@ -65,7 +65,7 @@ func TestNpmAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Equal(t, 0, len(analysis.AnalysisVulnerabilities))
+		assert.Equal(t, 0, len(analysis.Vulnerabilities))
 		assert.False(t, analysis.HasErrors(), "Expected no errors on analysis")
 	})
 
@@ -80,7 +80,7 @@ func TestNpmAuditParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Equal(t, 0, len(analysis.AnalysisVulnerabilities))
+		assert.Equal(t, 0, len(analysis.Vulnerabilities))
 		assert.True(t, analysis.HasErrors(), "Expected errors on analysis")
 	})
 

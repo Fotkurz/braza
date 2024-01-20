@@ -23,32 +23,32 @@ import (
 )
 
 //nolint:lll,revive // notations need more than 130 characters and struct used on gorm
-type AnalysisVulnerabilities struct {
+type Vulnerabilities struct {
 	VulnerabilityID uuid.UUID                   `json:"vulnerabilityID" gorm:"Column:vulnerability_id" example:"00000000-0000-0000-0000-000000000000"`
 	AnalysisID      uuid.UUID                   `json:"analysisID" gorm:"Column:analysis_id" example:"00000000-0000-0000-0000-000000000000"`
 	CreatedAt       time.Time                   `json:"createdAt" gorm:"Column:created_at" example:"2021-12-30T23:59:59Z"`
-	Vulnerability   vulnerability.Vulnerability `json:"vulnerabilities" gorm:"foreignKey:VulnerabilityID;references:VulnerabilityID"`
+	Vulnerability   vulnerability.Vulnerability `json:"vulnerability" gorm:"foreignKey:VulnerabilityID;references:VulnerabilityID"`
 }
 
-func (a *AnalysisVulnerabilities) GetTable() string {
-	return "analysis_vulnerabilities"
+func (a *Vulnerabilities) GetTable() string {
+	return "vulnerabilities"
 }
 
-func (a *AnalysisVulnerabilities) SetCreatedAt() {
+func (a *Vulnerabilities) SetCreatedAt() {
 	a.CreatedAt = time.Now()
 }
 
-func (a *AnalysisVulnerabilities) SetVulnerabilityID() {
+func (a *Vulnerabilities) SetVulnerabilityID() {
 	a.Vulnerability.GenerateID()
 	a.VulnerabilityID = a.Vulnerability.VulnerabilityID
 }
 
-func (a *AnalysisVulnerabilities) SetAnalysisID(id uuid.UUID) {
+func (a *Vulnerabilities) SetAnalysisID(id uuid.UUID) {
 	a.AnalysisID = id
 }
 
-func (a *AnalysisVulnerabilities) GetAnalysisVulnerabilitiesWithoutVulnerability() *AnalysisVulnerabilities {
-	return &AnalysisVulnerabilities{
+func (a *Vulnerabilities) GetAnalysisVulnerabilitiesWithoutVulnerability() *Vulnerabilities {
+	return &Vulnerabilities{
 		VulnerabilityID: a.VulnerabilityID,
 		AnalysisID:      a.AnalysisID,
 		CreatedAt:       a.CreatedAt,

@@ -25,16 +25,16 @@ import (
 
 //nolint:lll // notations need more than 130 characters
 type Analysis struct {
-	ID                      uuid.UUID                 `json:"id" gorm:"Column:analysis_id" example:"00000000-0000-0000-0000-000000000000"`
-	RepositoryID            uuid.UUID                 `json:"repositoryID" gorm:"Column:repository_id" example:"00000000-0000-0000-0000-000000000000"`
-	RepositoryName          string                    `json:"repositoryName" gorm:"Column:repository_name" example:"my-project"`
-	WorkspaceID             uuid.UUID                 `json:"workspaceID" gorm:"Column:workspace_id" example:"00000000-0000-0000-0000-000000000000"`
-	WorkspaceName           string                    `json:"workspaceName" gorm:"Column:workspace_name" example:"my-workspace"`
-	Status                  analysis.Status           `json:"status" gorm:"Column:status" enums:"running,success,error" example:"success"`
-	Errors                  string                    `json:"errors" gorm:"Column:errors"`
-	CreatedAt               time.Time                 `json:"createdAt" gorm:"Column:created_at" example:"2021-12-30T23:59:59Z"`
-	FinishedAt              time.Time                 `json:"finishedAt" gorm:"Column:finished_at" example:"2021-12-30T23:59:59Z"`
-	AnalysisVulnerabilities []AnalysisVulnerabilities `json:"analysisVulnerabilities" gorm:"foreignKey:AnalysisID;references:ID"`
+	ID              uuid.UUID         `json:"id" gorm:"Column:analysis_id" example:"00000000-0000-0000-0000-000000000000"`
+	RepositoryID    uuid.UUID         `json:"repositoryID" gorm:"Column:repository_id" example:"00000000-0000-0000-0000-000000000000"`
+	RepositoryName  string            `json:"repositoryName" gorm:"Column:repository_name" example:"my-project"`
+	WorkspaceID     uuid.UUID         `json:"workspaceID" gorm:"Column:workspace_id" example:"00000000-0000-0000-0000-000000000000"`
+	WorkspaceName   string            `json:"workspaceName" gorm:"Column:workspace_name" example:"my-workspace"`
+	Status          analysis.Status   `json:"status" gorm:"Column:status" enums:"running,success,error" example:"success"`
+	Errors          string            `json:"errors" gorm:"Column:errors"`
+	CreatedAt       time.Time         `json:"createdAt" gorm:"Column:created_at" example:"2021-12-30T23:59:59Z"`
+	FinishedAt      time.Time         `json:"finishedAt" gorm:"Column:finished_at" example:"2021-12-30T23:59:59Z"`
+	Vulnerabilities []Vulnerabilities `json:"analysisVulnerabilities" gorm:"foreignKey:AnalysisID;references:ID"`
 
 	// Warnings this field has an idea of centralizing all warnings that need to printed in the end of the analysis,
 	// simplifying our warning management. After start an analysis we cannot print any message or the loading will
@@ -76,7 +76,7 @@ func (a *Analysis) Map() map[string]interface{} {
 		"status":                  a.Status,
 		"errors":                  a.Errors,
 		"finishedAt":              a.FinishedAt,
-		"analysisVulnerabilities": a.AnalysisVulnerabilities,
+		"analysisVulnerabilities": a.Vulnerabilities,
 	}
 }
 
@@ -99,10 +99,10 @@ func (a *Analysis) SetError(err error) {
 }
 
 func (a *Analysis) SetAllAnalysisVulnerabilitiesDefaultData() {
-	for key := range a.AnalysisVulnerabilities {
-		a.AnalysisVulnerabilities[key].SetCreatedAt()
-		a.AnalysisVulnerabilities[key].SetAnalysisID(a.ID)
-		a.AnalysisVulnerabilities[key].SetVulnerabilityID()
+	for key := range a.Vulnerabilities {
+		a.Vulnerabilities[key].SetCreatedAt()
+		a.Vulnerabilities[key].SetAnalysisID(a.ID)
+		a.Vulnerabilities[key].SetVulnerabilityID()
 	}
 }
 
@@ -135,7 +135,7 @@ func (a *Analysis) HasErrors() bool {
 }
 
 func (a *Analysis) GetTotalVulnerabilities() int {
-	return len(a.AnalysisVulnerabilities)
+	return len(a.Vulnerabilities)
 }
 
 func (a *Analysis) GetDataWithoutVulnerabilities() *Analysis {

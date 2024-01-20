@@ -62,8 +62,8 @@ func (s *Sarif) ConvertVulnerabilityToSarif() (report Report) {
 // This prevents the need from iterating over the entire vuln list multiple times.
 func (s *Sarif) populateReferenceMaps(report *Report) {
 	runsByTool := make(map[string]ReportRun)
-	for index := range s.analysiss.AnalysisVulnerabilities {
-		vuln := &s.analysiss.AnalysisVulnerabilities[index].Vulnerability
+	for index := range s.analysiss.Vulnerabilities {
+		vuln := &s.analysiss.Vulnerabilities[index].Vulnerability
 		if _, exists := runsByTool[string(vuln.SecurityTool)]; !exists {
 			report.Runs = append(report.Runs, s.initToolStructure(vuln, runsByTool))
 		}

@@ -38,13 +38,13 @@ import (
 
 func getAnalysis() *entitiesAnalysis.Analysis {
 	return &entitiesAnalysis.Analysis{
-		ID:                      uuid.New(),
-		RepositoryID:            uuid.New(),
-		WorkspaceID:             uuid.New(),
-		Status:                  enumHorusec.Running,
-		Errors:                  "",
-		CreatedAt:               time.Now(),
-		AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
+		ID:              uuid.New(),
+		RepositoryID:    uuid.New(),
+		WorkspaceID:     uuid.New(),
+		Status:          enumHorusec.Running,
+		Errors:          "",
+		CreatedAt:       time.Now(),
+		Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
 	}
 }
 
@@ -96,9 +96,9 @@ func TestFormatter_StartSafety(t *testing.T) {
 		formatter := NewFormatter(service)
 
 		formatter.StartAnalysis("")
-		assert.Equal(t, 23, len(analysis.AnalysisVulnerabilities))
+		assert.Equal(t, 23, len(analysis.Vulnerabilities))
 
-		for _, av := range analysis.AnalysisVulnerabilities {
+		for _, av := range analysis.Vulnerabilities {
 			vuln := av.Vulnerability
 			assert.Equal(t, tools.Safety, vuln.SecurityTool)
 			assert.Equal(t, languages.Python, vuln.Language)

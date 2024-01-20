@@ -50,9 +50,9 @@ func TestStartCFlawfinder(t *testing.T) {
 
 		formatter.StartAnalysis("")
 
-		require.Len(t, analysis.AnalysisVulnerabilities, 1)
+		require.Len(t, analysis.Vulnerabilities, 1)
 
-		vuln := analysis.AnalysisVulnerabilities[0].Vulnerability
+		vuln := analysis.Vulnerabilities[0].Vulnerability
 
 		assert.Equal(t, tools.Flawfinder, vuln.SecurityTool, "Expected flawfinder as security tool")
 		assert.Equal(t, languages.C, vuln.Language, "Expected C as vulnerability language")

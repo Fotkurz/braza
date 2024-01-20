@@ -43,8 +43,8 @@ func TestParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 
-		assert.Len(t, newAnalysis.AnalysisVulnerabilities, 39)
-		for _, v := range newAnalysis.AnalysisVulnerabilities {
+		assert.Len(t, newAnalysis.Vulnerabilities, 39)
+		for _, v := range newAnalysis.Vulnerabilities {
 			vuln := v.Vulnerability
 			assert.Equal(t, tools.BundlerAudit, vuln.SecurityTool)
 			assert.Equal(t, languages.Ruby, vuln.Language)
@@ -69,7 +69,7 @@ func TestParseOutput(t *testing.T) {
 		formatter.StartAnalysis("")
 
 		assert.True(t, newAnalysis.HasErrors(), "Expected no errors on analysis")
-		assert.Len(t, newAnalysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, newAnalysis.Vulnerabilities, 0)
 	})
 
 	t.Run("should add error of the cannot connect in db", func(t *testing.T) {
@@ -83,7 +83,7 @@ func TestParseOutput(t *testing.T) {
 		formatter := NewFormatter(service)
 		formatter.StartAnalysis("")
 		assert.Contains(t, newAnalysis.Errors, messages.MsgErrorBundlerNotAccessDB)
-		assert.Len(t, newAnalysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, newAnalysis.Vulnerabilities, 0)
 	})
 
 	t.Run("should not return any vulnerability if output is empty", func(t *testing.T) {
@@ -98,7 +98,7 @@ func TestParseOutput(t *testing.T) {
 		formatter.StartAnalysis("")
 
 		assert.Contains(t, newAnalysis.Errors, ErrGemLockNotFound.Error())
-		assert.Len(t, newAnalysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, newAnalysis.Vulnerabilities, 0)
 	})
 
 	t.Run("Should add error on analysis when something went wrong in container", func(t *testing.T) {

@@ -42,8 +42,8 @@ func TestCheckovParseOutput(t *testing.T) {
 
 		formatter.StartAnalysis("")
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 3)
-		for _, v := range analysis.AnalysisVulnerabilities {
+		assert.Len(t, analysis.Vulnerabilities, 3)
+		for _, v := range analysis.Vulnerabilities {
 			vuln := v.Vulnerability
 			assert.Equal(t, tools.Checkov, vuln.SecurityTool)
 			assert.Equal(t, languages.HCL, vuln.Language)

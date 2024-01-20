@@ -59,7 +59,7 @@ func TestGosecStartAnalysis(t *testing.T) {
 		gosec.StartAnalysis("")
 
 		assert.False(t, entity.HasErrors(), "Expected no errors for analysis")
-		assert.Len(t, entity.AnalysisVulnerabilities, 5)
+		assert.Len(t, entity.Vulnerabilities, 5)
 	})
 
 	t.Run("Should run analysis and add error from Docker on Analysis", func(t *testing.T) {
