@@ -34,7 +34,7 @@ type Analysis struct {
 	Errors          string            `json:"errors" gorm:"Column:errors"`
 	CreatedAt       time.Time         `json:"createdAt" gorm:"Column:created_at" example:"2021-12-30T23:59:59Z"`
 	FinishedAt      time.Time         `json:"finishedAt" gorm:"Column:finished_at" example:"2021-12-30T23:59:59Z"`
-	Vulnerabilities []Vulnerabilities `json:"analysisVulnerabilities" gorm:"foreignKey:AnalysisID;references:ID"`
+	Vulnerabilities []Vulnerabilities `json:"vulnerabilities" gorm:"foreignKey:AnalysisID;references:ID"`
 
 	// Warnings this field has an idea of centralizing all warnings that need to printed in the end of the analysis,
 	// simplifying our warning management. After start an analysis we cannot print any message or the loading will
