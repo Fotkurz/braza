@@ -23,16 +23,16 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/google/uuid"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/e2e/analysis"
-	customimages "github.com/ZupIT/horusec/internal/entities/custom_images"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/e2e/analysis"
+	customimages "github.com/Fotkurz/braza/internal/entities/custom_images"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 const (

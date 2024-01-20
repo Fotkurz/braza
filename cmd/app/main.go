@@ -17,13 +17,13 @@ package main
 import (
 	"os"
 
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
 	"github.com/spf13/cobra"
 
-	"github.com/ZupIT/horusec/cmd/app/generate"
-	"github.com/ZupIT/horusec/cmd/app/start"
-	"github.com/ZupIT/horusec/cmd/app/version"
-	"github.com/ZupIT/horusec/config"
+	"github.com/Fotkurz/braza/cmd/app/generate"
+	"github.com/Fotkurz/braza/cmd/app/start"
+	"github.com/Fotkurz/braza/cmd/app/version"
+	"github.com/Fotkurz/braza/config"
 )
 
 // nolint:funlen,lll

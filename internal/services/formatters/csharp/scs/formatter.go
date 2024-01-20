@@ -19,18 +19,18 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/internal/entities/docker"
-	"github.com/ZupIT/horusec/internal/enums/images"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	fileutils "github.com/ZupIT/horusec/internal/utils/file"
-	vulnHash "github.com/ZupIT/horusec/internal/utils/vuln_hash"
+	"github.com/Fotkurz/braza/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/enums/images"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	fileutils "github.com/Fotkurz/braza/internal/utils/file"
+	vulnHash "github.com/Fotkurz/braza/internal/utils/vuln_hash"
 )
 
 var (
@@ -43,9 +43,9 @@ var (
 	ErrBuildProject = errors.New("project failed to build. Fix the project issues and try again")
 
 	// ErrInvalidSDKOutput occurs when SCS try to use an old version of csharp SDK to analyze a project with the new One
-	ErrInvalidSDKOutput = errors.New("horusec-engine-csharp SDK is outdated, " +
+	ErrInvalidSDKOutput = errors.New("horusec/internal/engine-csharp SDK is outdated, " +
 		"you can build your own and add to horusecCliCustomImages config" +
-		" or create a new issue on https://github.com/ZupIT/horusec/issues to maintainers update the image")
+		" or create a new issue on https://github.com/Fotkurz/braza/issues to maintainers update the image")
 )
 
 const (

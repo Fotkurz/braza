@@ -21,16 +21,16 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/bmatcuk/doublestar/v4"
 	"github.com/go-enry/go-enry/v2"
 	"github.com/google/uuid"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/enums/toignore"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/utils/copy"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/enums/toignore"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/utils/copy"
 )
 
 const prefixGitSubModule = "gitdir: "
@@ -241,6 +241,7 @@ func (ld *LanguageDetect) isBatFileOrShellFile(lang string) bool {
 // If so, we also check whether the .git is a submodule or not,
 // so we can find where the original git folder is
 // and replace it inside .horusec to run the gitleaks tool without any problems.
+//
 //nolint:funlen
 func (ld *LanguageDetect) copyGitFolderWhenIsSubmodule(directory, folderDstName string) error {
 	if ld.config.EnableGitHistoryAnalysis {

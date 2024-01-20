@@ -18,10 +18,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	enumHorusec "github.com/ZupIT/horusec-devkit/pkg/enums/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	enumHorusec "github.com/Fotkurz/braza/pkg/enums/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 )

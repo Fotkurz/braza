@@ -24,10 +24,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
 )
 
 // CommitAuthor contains commit author information to a given

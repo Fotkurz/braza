@@ -21,19 +21,19 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	dockerEntities "github.com/ZupIT/horusec/internal/entities/docker"
-	"github.com/ZupIT/horusec/internal/enums/images"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/services/formatters/python/safety/entities"
-	"github.com/ZupIT/horusec/internal/utils/file"
-	vulnhash "github.com/ZupIT/horusec/internal/utils/vuln_hash"
+	dockerEntities "github.com/Fotkurz/braza/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/enums/images"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/services/formatters/python/safety/entities"
+	"github.com/Fotkurz/braza/internal/utils/file"
+	vulnhash "github.com/Fotkurz/braza/internal/utils/vuln_hash"
 )
 
 type Formatter struct {

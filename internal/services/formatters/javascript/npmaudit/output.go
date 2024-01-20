@@ -14,7 +14,7 @@
 
 package npmaudit
 
-import "github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+import "github.com/Fotkurz/braza/pkg/enums/severities"
 
 type npmOutput struct {
 	Advisories map[string]npmIssue `json:"advisories"`

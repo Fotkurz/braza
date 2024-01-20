@@ -17,20 +17,20 @@ package engines_test
 import (
 	"testing"
 
-	"github.com/ZupIT/horusec-engine/text"
+	"github.com/Fotkurz/braza/internal/engine/text"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ZupIT/horusec/internal/services/engines"
-	"github.com/ZupIT/horusec/internal/services/engines/csharp"
-	"github.com/ZupIT/horusec/internal/services/engines/dart"
-	"github.com/ZupIT/horusec/internal/services/engines/java"
-	"github.com/ZupIT/horusec/internal/services/engines/javascript"
-	"github.com/ZupIT/horusec/internal/services/engines/kotlin"
-	"github.com/ZupIT/horusec/internal/services/engines/kubernetes"
-	"github.com/ZupIT/horusec/internal/services/engines/leaks"
-	"github.com/ZupIT/horusec/internal/services/engines/nginx"
-	"github.com/ZupIT/horusec/internal/services/engines/swift"
+	"github.com/Fotkurz/braza/internal/services/engines"
+	"github.com/Fotkurz/braza/internal/services/engines/csharp"
+	"github.com/Fotkurz/braza/internal/services/engines/dart"
+	"github.com/Fotkurz/braza/internal/services/engines/java"
+	"github.com/Fotkurz/braza/internal/services/engines/javascript"
+	"github.com/Fotkurz/braza/internal/services/engines/kotlin"
+	"github.com/Fotkurz/braza/internal/services/engines/kubernetes"
+	"github.com/Fotkurz/braza/internal/services/engines/leaks"
+	"github.com/Fotkurz/braza/internal/services/engines/nginx"
+	"github.com/Fotkurz/braza/internal/services/engines/swift"
 )
 
 func TestGetRules(t *testing.T) {

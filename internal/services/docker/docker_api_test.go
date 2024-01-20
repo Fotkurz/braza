@@ -24,14 +24,15 @@ import (
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
+	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/errdefs"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
-	cliConfig "github.com/ZupIT/horusec/config"
-	dockerEntities "github.com/ZupIT/horusec/internal/entities/docker"
-	"github.com/ZupIT/horusec/internal/services/docker/client"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	cliConfig "github.com/Fotkurz/braza/config"
+	dockerEntities "github.com/Fotkurz/braza/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/services/docker/client"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 var ErrGeneric = errors.New("some error generic")
@@ -138,7 +139,7 @@ func TestDockerAPI_CreateLanguageAnalysisContainer(t *testing.T) {
 		dockerAPIClient := testutil.NewDockerClientMock()
 		dockerAPIClient.On("ImageList").Return([]types.ImageSummary{{ID: uuid.New().String()}}, nil)
 		dockerAPIClient.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte("Some data"))), nil)
-		dockerAPIClient.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{ID: uuid.New().String()}, ErrGeneric)
+		dockerAPIClient.On("ContainerCreate").Return(container.CreateResponse{ID: uuid.New().String()}, ErrGeneric)
 
 		api := New(dockerAPIClient, &cliConfig.Config{}, uuid.New())
 		ad := &dockerEntities.AnalysisData{
@@ -158,7 +159,7 @@ func TestDockerAPI_CreateLanguageAnalysisContainer(t *testing.T) {
 		dockerAPIClient := testutil.NewDockerClientMock()
 		dockerAPIClient.On("ImageList").Return([]types.ImageSummary{{ID: uuid.New().String()}}, nil)
 		dockerAPIClient.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte("Some data"))), nil)
-		dockerAPIClient.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{ID: uuid.New().String()}, nil)
+		dockerAPIClient.On("ContainerCreate").Return(container.CreateResponse{ID: uuid.New().String()}, nil)
 		dockerAPIClient.On("ContainerStart").Return(ErrGeneric)
 
 		api := New(dockerAPIClient, &cliConfig.Config{}, uuid.New())
@@ -177,12 +178,12 @@ func TestDockerAPI_CreateLanguageAnalysisContainer(t *testing.T) {
 		_ = os.Setenv("HORUSEC_DOCKER_API_RETRY_TIME_SLEEP_SECONDS", "1")
 
 		dockerAPIClient := testutil.NewDockerClientMock()
-		dockerAPIClient.On("ImageList").Return([]types.ImageSummary{{ID: uuid.New().String()}}, nil)
+		dockerAPIClient.On("ImageList").Return([]image.Summary{{ID: uuid.New().String()}}, nil)
 		dockerAPIClient.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte("Some data"))), nil)
-		dockerAPIClient.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{ID: uuid.New().String()}, nil)
+		dockerAPIClient.On("ContainerCreate").Return(container.CreateResponse{ID: uuid.New().String()}, nil)
 		dockerAPIClient.On("ContainerStart").Return(nil)
-		dockerAPIClient.On("ContainerWait").Return(container.ContainerWaitOKBody{
-			Error: &container.ContainerWaitOKBodyError{
+		dockerAPIClient.On("ContainerWait").Return(container.WaitResponse{
+			Error: &container.WaitExitError{
 				Message: ErrGeneric.Error(),
 			},
 		}, nil)
@@ -205,11 +206,11 @@ func TestDockerAPI_CreateLanguageAnalysisContainer(t *testing.T) {
 		_ = os.Setenv("HORUSEC_DOCKER_API_RETRY_TIME_SLEEP_SECONDS", "1")
 
 		dockerAPIClient := testutil.NewDockerClientMock()
-		dockerAPIClient.On("ImageList").Return([]types.ImageSummary{{ID: uuid.New().String()}}, nil)
+		dockerAPIClient.On("ImageList").Return([]image.Summary{{ID: uuid.New().String()}}, nil)
 		dockerAPIClient.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte("Some data"))), nil)
-		dockerAPIClient.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{ID: uuid.New().String()}, nil)
+		dockerAPIClient.On("ContainerCreate").Return(container.CreateResponse{ID: uuid.New().String()}, nil)
 		dockerAPIClient.On("ContainerStart").Return(nil)
-		dockerAPIClient.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		dockerAPIClient.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		dockerAPIClient.On("ContainerLogs").Return(io.NopCloser(bytes.NewReader(nil)), ErrGeneric)
 		dockerAPIClient.On("ContainerRemove").Return(nil)
 
@@ -232,9 +233,9 @@ func TestDockerAPI_CreateLanguageAnalysisContainer(t *testing.T) {
 		dockerAPIClient := testutil.NewDockerClientMock()
 		dockerAPIClient.On("ImageList").Return([]types.ImageSummary{{ID: uuid.New().String()}}, nil)
 		dockerAPIClient.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte("Some data"))), nil)
-		dockerAPIClient.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{ID: uuid.New().String()}, nil)
+		dockerAPIClient.On("ContainerCreate").Return(container.CreateResponse{ID: uuid.New().String()}, nil)
 		dockerAPIClient.On("ContainerStart").Return(nil)
-		dockerAPIClient.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		dockerAPIClient.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		dockerAPIClient.On("ContainerLogs").Return(io.NopCloser(bytes.NewReader([]byte("{}"))), nil)
 		dockerAPIClient.On("ContainerRemove").Return(nil)
 
@@ -253,9 +254,9 @@ func TestDockerAPI_CreateLanguageAnalysisContainer(t *testing.T) {
 		dockerAPIClient := testutil.NewDockerClientMock()
 		dockerAPIClient.On("ImageList").Return([]types.ImageSummary{}, nil)
 		dockerAPIClient.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte("Some data"))), nil)
-		dockerAPIClient.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{ID: uuid.New().String()}, nil)
+		dockerAPIClient.On("ContainerCreate").Return(container.CreateResponse{ID: uuid.New().String()}, nil)
 		dockerAPIClient.On("ContainerStart").Return(nil)
-		dockerAPIClient.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		dockerAPIClient.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		dockerAPIClient.On("ContainerLogs").Return(io.NopCloser(bytes.NewReader([]byte("{}"))), nil)
 		dockerAPIClient.On("ContainerRemove").Return(nil)
 
@@ -269,9 +270,9 @@ func TestDockerAPI_CreateLanguageAnalysisContainer(t *testing.T) {
 	t.Run("Should not pull image from registry when exists on cache", func(t *testing.T) {
 		dockerAPIClient := testutil.NewDockerClientMock()
 		dockerAPIClient.On("ImageList").Return([]types.ImageSummary{{ID: uuid.New().String()}}, nil)
-		dockerAPIClient.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{ID: uuid.New().String()}, nil)
+		dockerAPIClient.On("ContainerCreate").Return(container.CreateResponse{ID: uuid.New().String()}, nil)
 		dockerAPIClient.On("ContainerStart").Return(nil)
-		dockerAPIClient.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		dockerAPIClient.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		dockerAPIClient.On("ContainerLogs").Return(io.NopCloser(bytes.NewReader([]byte("{}"))), nil)
 		dockerAPIClient.On("ContainerRemove").Return(nil)
 

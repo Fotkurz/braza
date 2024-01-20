@@ -20,16 +20,16 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/spf13/cobra"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/config/dist"
-	"github.com/ZupIT/horusec/internal/controllers/analyzer"
-	"github.com/ZupIT/horusec/internal/controllers/requirements"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	usecases "github.com/ZupIT/horusec/internal/usecases/cli"
-	"github.com/ZupIT/horusec/internal/utils/prompt"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/config/dist"
+	"github.com/Fotkurz/braza/internal/controllers/analyzer"
+	"github.com/Fotkurz/braza/internal/controllers/requirements"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	usecases "github.com/Fotkurz/braza/internal/usecases/cli"
+	"github.com/Fotkurz/braza/internal/utils/prompt"
 )
 
 // Analyzer is the interface that execute the analysis on some directory.

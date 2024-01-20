@@ -20,17 +20,17 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger/enums"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/utils/logger/enums"
 	"github.com/google/uuid"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
 
-	"github.com/ZupIT/horusec/internal/enums/outputtype"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/internal/enums/outputtype"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 var _ = Describe("running binary Horusec with start parameter", func() {

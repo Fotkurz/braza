@@ -22,13 +22,13 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/cli"
-	"github.com/ZupIT/horusec-devkit/pkg/services/http/request"
-	"github.com/ZupIT/horusec-devkit/pkg/services/http/request/entities"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/cli"
+	"github.com/Fotkurz/braza/pkg/services/http/request"
+	"github.com/Fotkurz/braza/pkg/services/http/request/entities"
 	"github.com/google/uuid"
 
-	"github.com/ZupIT/horusec/config"
+	"github.com/Fotkurz/braza/config"
 )
 
 type Service struct {

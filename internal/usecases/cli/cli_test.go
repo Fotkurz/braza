@@ -24,9 +24,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/workdir"
-	"github.com/ZupIT/horusec/internal/enums/outputtype"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/workdir"
+	"github.com/Fotkurz/braza/internal/enums/outputtype"
 )
 
 func TestValidateConfigs(t *testing.T) {

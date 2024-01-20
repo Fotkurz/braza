@@ -21,7 +21,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger/enums"
+	"github.com/Fotkurz/braza/pkg/utils/logger/enums"
 	"github.com/onsi/ginkgo"
 )
 
@@ -46,7 +46,7 @@ func ginkgoBuildHorusecBinary(customArgs ...string) string {
 	binary := filepath.Join(os.TempDir(), getBinaryNameBySystem())
 	args := []string{
 		"build",
-		`-ldflags=-X 'github.com/ZupIT/horusec/cmd/app/version.Version=vTest'`,
+		`-ldflags=-X 'github.com/Fotkurz/braza/cmd/app/version.Version=vTest'`,
 		fmt.Sprintf("-o=%s", binary), filepath.Join(RootPath, "cmd", "app"),
 	}
 	args = append(args, customArgs...)

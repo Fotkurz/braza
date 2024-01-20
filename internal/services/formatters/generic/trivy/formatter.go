@@ -21,21 +21,21 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	enumvulnerability "github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	enumvulnerability "github.com/Fotkurz/braza/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/google/uuid"
 
-	"github.com/ZupIT/horusec/internal/entities/docker"
-	"github.com/ZupIT/horusec/internal/enums/images"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/file"
-	vulnhash "github.com/ZupIT/horusec/internal/utils/vuln_hash"
+	"github.com/Fotkurz/braza/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/enums/images"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/file"
+	vulnhash "github.com/Fotkurz/braza/internal/utils/vuln_hash"
 )
 
 // trivyResult represents the results after execute Trivy commands.
@@ -181,7 +181,7 @@ func (f *Formatter) addVulnerabilitiesOutput(vulnerabilities []*trivyVulnerabili
 }
 
 // getDeprecatedHashes func necessary to avoid a breaking change in the trivy hash generation. Since the pull request
-// https://github.com/ZupIT/horusec/pull/882 some changes were made in the line and code, and this data influences
+// https://github.com/Fotkurz/braza/pull/882 some changes were made in the line and code, and this data influences
 // directly the hash generation. This func will avoid this hash change by using the same data as before, but for the
 // users the data will be showed with the fixes made in the pull request 882, leading to no braking changes and keeping
 // the fixes.

@@ -19,15 +19,15 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestTrivyParseOutput(t *testing.T) {
@@ -5927,7 +5927,7 @@ const configOutput = `
           "ID": "DS005",
           "Title": "ADD instead of COPY",
           "Description": "You should use COPY instead of ADD unless you want to extract a tar file. Note that an ADD command will extract a tar file, which adds the risk of Zip-based vulnerabilities. Accordingly, it is advised to use a COPY command, which does not extract tar files.",
-          "Message": "Consider using 'COPY . /go/src/github.com/ZupIT/horus' command instead of 'ADD . /go/src/github.com/ZupIT/horus'",
+          "Message": "Consider using 'COPY . /go/src/github.com/Fotkurz/horus' command instead of 'ADD . /go/src/github.com/Fotkurz/horus'",
           "Namespace": "appshield.dockerfile.DS005",
           "Query": "data.appshield.dockerfile.DS005.deny",
           "Resolution": "Use COPY instead of ADD",

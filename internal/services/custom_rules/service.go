@@ -20,12 +20,12 @@ import (
 	"io"
 	"os"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
-	engine "github.com/ZupIT/horusec-engine"
-	"github.com/ZupIT/horusec-engine/text"
+	engine "github.com/Fotkurz/braza/internal/engine"
+	"github.com/Fotkurz/braza/internal/engine/text"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/config"
+	"github.com/Fotkurz/braza/config"
 )
 
 // Service represents the custom rule service responsible to

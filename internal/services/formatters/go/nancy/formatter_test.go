@@ -20,17 +20,17 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestParseOutput(t *testing.T) {
@@ -296,8 +296,8 @@ const output = `
             "InvalidSemVer":false
         },
         {
-            "Coordinates":"pkg:golang/github.com/ZupIT/horusec-engine@0.2.8",
-            "Reference":"https://ossindex.sonatype.org/component/pkg:golang/github.com/ZupIT/horusec-engine@0.2.8?utm_source=nancy-client\u0026utm_medium=integration\u0026utm_content=1.0.29",
+            "Coordinates":"pkg:golang/github.com/Fotkurz/braza/internal/engine@0.2.8",
+            "Reference":"https://ossindex.sonatype.org/component/pkg:golang/github.com/Fotkurz/braza/internal/engine@0.2.8?utm_source=nancy-client\u0026utm_medium=integration\u0026utm_content=1.0.29",
             "Vulnerabilities":[
                 
             ],

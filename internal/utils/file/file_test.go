@@ -22,9 +22,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	dotnetcli "github.com/ZupIT/horusec/internal/services/formatters/csharp/dotnet_cli"
-	"github.com/ZupIT/horusec/internal/utils/file"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	dotnetcli "github.com/Fotkurz/braza/internal/services/formatters/csharp/dotnet_cli"
+	"github.com/Fotkurz/braza/internal/utils/file"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestGetFilePathIntoBasePath(t *testing.T) {

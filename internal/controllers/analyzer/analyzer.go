@@ -19,23 +19,23 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	enumsAnalysis "github.com/ZupIT/horusec-devkit/pkg/enums/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	enumsVulnerability "github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	enumsAnalysis "github.com/Fotkurz/braza/pkg/enums/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	enumsVulnerability "github.com/Fotkurz/braza/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/google/uuid"
 
-	"github.com/ZupIT/horusec/config"
-	languagedetect "github.com/ZupIT/horusec/internal/controllers/language_detect"
-	"github.com/ZupIT/horusec/internal/controllers/printresults"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/docker"
-	"github.com/ZupIT/horusec/internal/services/docker/client"
-	horusec_api "github.com/ZupIT/horusec/internal/services/horusec_api"
+	"github.com/Fotkurz/braza/config"
+	languagedetect "github.com/Fotkurz/braza/internal/controllers/language_detect"
+	"github.com/Fotkurz/braza/internal/controllers/printresults"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/docker"
+	"github.com/Fotkurz/braza/internal/services/docker/client"
+	horusec_api "github.com/Fotkurz/braza/internal/services/horusec_api"
 )
 
 // LanguageDetect is the interface that detect all languages in some directory.
@@ -62,8 +62,9 @@ const detailsHeaderText = "* Possible vulnerability detected: "
 // Analyzer is responsible to orchestrate the pipeline of an analysis.
 //
 // Basically, an analysis has the following steps:
-// 	1 - Detect all languages on project path.
-// 	2 - Execute all tools to all languages founded.
+//
+//	1 - Detect all languages on project path.
+//	2 - Execute all tools to all languages founded.
 //	3 - Send analysis to Horusuec Manager if access token is set.
 //	4 - Print analysis results.
 type Analyzer struct {
@@ -82,6 +83,7 @@ func New(cfg *config.Config) *Analyzer {
 		CreatedAt: time.Now(),
 		Status:    enumsAnalysis.Running,
 	}
+
 	dockerAPI := docker.New(client.NewDockerClient(), cfg, analysiss.ID)
 	return &Analyzer{
 		analysis:        analysiss,

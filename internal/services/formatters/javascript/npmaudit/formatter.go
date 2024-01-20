@@ -24,16 +24,16 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/internal/entities/docker"
-	"github.com/ZupIT/horusec/internal/enums/images"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	vulnhash "github.com/ZupIT/horusec/internal/utils/vuln_hash"
+	"github.com/Fotkurz/braza/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/enums/images"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	vulnhash "github.com/Fotkurz/braza/internal/utils/vuln_hash"
 )
 
 type Formatter struct {

@@ -17,21 +17,21 @@ package formatters_test
 import (
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/services/formatters/csharp/horuseccsharp"
-	"github.com/ZupIT/horusec/internal/services/formatters/dart/horusecdart"
-	"github.com/ZupIT/horusec/internal/services/formatters/java/horusecjava"
-	"github.com/ZupIT/horusec/internal/services/formatters/javascript/horusecjavascript"
-	"github.com/ZupIT/horusec/internal/services/formatters/kotlin/horuseckotlin"
-	"github.com/ZupIT/horusec/internal/services/formatters/leaks/horusecleaks"
-	"github.com/ZupIT/horusec/internal/services/formatters/nginx/horusecnginx"
-	"github.com/ZupIT/horusec/internal/services/formatters/swift/horusecswift"
-	"github.com/ZupIT/horusec/internal/services/formatters/yaml/horuseckubernetes"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/services/formatters/csharp/horuseccsharp"
+	"github.com/Fotkurz/braza/internal/services/formatters/dart/horusecdart"
+	"github.com/Fotkurz/braza/internal/services/formatters/java/horusecjava"
+	"github.com/Fotkurz/braza/internal/services/formatters/javascript/horusecjavascript"
+	"github.com/Fotkurz/braza/internal/services/formatters/kotlin/horuseckotlin"
+	"github.com/Fotkurz/braza/internal/services/formatters/leaks/horusecleaks"
+	"github.com/Fotkurz/braza/internal/services/formatters/nginx/horusecnginx"
+	"github.com/Fotkurz/braza/internal/services/formatters/swift/horusecswift"
+	"github.com/Fotkurz/braza/internal/services/formatters/yaml/horuseckubernetes"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestStartAnalysis(t *testing.T) {

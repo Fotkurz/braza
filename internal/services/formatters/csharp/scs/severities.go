@@ -14,7 +14,7 @@
 
 package scs
 
-import "github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+import "github.com/Fotkurz/braza/pkg/enums/severities"
 
 // These constants represents high vulnerabilities from scs.
 const (

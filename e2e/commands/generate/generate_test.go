@@ -24,7 +24,7 @@ import (
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
 
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 var _ = Describe("Run horusec CLI with generate argument", func() {
