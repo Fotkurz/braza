@@ -30,3 +30,7 @@ The first steps will be as described in the Todos section below.
 ## Contributing
 
 Not accepting any contribution for now.
+
+## Running
+
+You can simple run ```make build-dev``` and then ```./braza-dev version```
