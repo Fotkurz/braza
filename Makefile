@@ -15,8 +15,11 @@ ARCH_ARM64 ?= arm64
 ARCH_AMD64 ?= amd64
 MAIN = ./cmd/app
 
+## Requires permission
+install-linter:
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /bin v1.55.2
+
 lint:
-	$(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 	$(GOLANG_CI_LINT) run -v --timeout=5m -c .golangci.yml ./...
 
 coverage:
