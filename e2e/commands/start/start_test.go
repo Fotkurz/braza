@@ -428,7 +428,7 @@ var _ = Describe("running binary Horusec with start parameter", func() {
 
 		It("Checks if the information severity property was set", func() {
 			Expect(session.Out.Contents()).To(ContainSubstring(`\"enable_information_severity\": true`))
-			Expect(session.Out.Contents()).NotTo(ContainSubstring("Horusec not show info vulnerabilities in this analysis"))
+			Expect(session.Out.Contents()).NotTo(ContainSubstring("Braza not show info vulnerabilities in this analysis"))
 		})
 	})
 

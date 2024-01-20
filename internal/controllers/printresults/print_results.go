@@ -88,7 +88,7 @@ func (pr *PrintResults) Print() (totalVulns int, err error) {
 	}
 
 	pr.checkIfExistVulnerabilityOrNoSec()
-	pr.verifyRepositoryAuthorizationToken()
+	// pr.verifyRepositoryAuthorizationToken()
 	pr.printResponseAnalysis()
 	pr.checkIfExistsErrorsInAnalysis()
 	pr.printWarnings()
