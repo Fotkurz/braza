@@ -30,8 +30,8 @@ var (
 func CreateCobraCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:     "version",
-		Short:   "Shows the current version of installed Horusec",
-		Example: "horusec version",
+		Short:   "Shows the current version of installed Braza",
+		Example: "braza version",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			printVersionInfo()
 			return nil

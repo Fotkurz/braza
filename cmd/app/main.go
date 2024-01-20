@@ -31,23 +31,23 @@ func main() {
 	cfg := config.New()
 
 	rootCmd := &cobra.Command{
-		Use: "horusec",
-		Short: `Horusec is an open source tool that orchestrates other security tools and identifies security flaws and vulnerabilities.
+		Use: "braza",
+		Short: `Braza is an open source tool that orchestrates other security tools and identifies security flaws and vulnerabilities.
 See more in https://docs.horusec.io/docs/overview
 		`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return cmd.Help()
 		},
 		Example: `
-# Horusec will ask in which directory the analysis should be performed. Default is the current path.
-horusec start
+# Braza will ask in which directory the analysis should be performed. Default is the current path.
+braza start
 
 # Use the current directory to run the analysis.
-horusec start -p .
+braza start -p .
 
 # Use a different path than the current one.
 # Note that the configuration file will still be searched in the current path if "--config-file-path" flag is not passed.
-horusec start -p="/home/user/projects/my-project"
+braza start -p="/home/user/projects/my-project"
 `,
 	}
 

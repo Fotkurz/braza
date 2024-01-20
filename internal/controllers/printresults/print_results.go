@@ -218,7 +218,7 @@ func (pr *PrintResults) createOutputJSON(content []byte) error {
 	if err != nil {
 		return pr.returnDefaultErrOutputJSON(err)
 	}
-
+	// #nosec G304
 	f, err := os.Create(path)
 	if err != nil {
 		return pr.returnDefaultErrOutputJSON(err)

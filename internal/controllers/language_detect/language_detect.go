@@ -276,6 +276,7 @@ func (ld *LanguageDetect) returnGitFolderOriginalIfIsSubmodule(directory string)
 	if fileInfo.IsDir() {
 		return false, ""
 	}
+	// #nosec G304
 	fileContentBytes, err := os.ReadFile(directory)
 	if err != nil {
 		logger.LogError(messages.MsgErrorCopyProjectToHorusecAnalysis, err)

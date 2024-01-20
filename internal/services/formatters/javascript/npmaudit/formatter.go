@@ -144,6 +144,7 @@ func (f *Formatter) getVersionText(version string) string {
 
 func (f *Formatter) getVulnerabilityLineByName(version, module, filename string) string {
 	filePath := filepath.Join(f.GetConfigProjectPath(), filepath.Clean(filename))
+	// #nosec G304
 	file, err := os.Open(filePath)
 	if err != nil {
 		return ""

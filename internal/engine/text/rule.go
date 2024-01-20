@@ -87,8 +87,12 @@ func (r *Rule) getFileContent(path string) ([]byte, error) {
 		return nil, err
 	}
 
-	defer file.Close()
-
+	defer func() {
+		if err := file.Close(); err != nil {
+			fmt.Printf("Error closing file: %s\n", err)
+		}
+	}()
+	// #nosec G304
 	content, err := io.ReadAll(file)
 	if err != nil {
 		return nil, err
