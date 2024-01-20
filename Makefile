@@ -23,9 +23,11 @@ lint:
 	$(GOLANG_CI_LINT) run -v --timeout=5m -c .golangci.yml ./...
 
 coverage:
-	curl -fsSL https://raw.githubusercontent.com/Fotkurz/horusec/pkg/main/scripts/coverage.sh | bash -s 90 ./cmd
-	curl -fsSL https://raw.githubusercontent.com/Fotkurz/horusec/pkg/main/scripts/coverage.sh | bash -s 90 ./config
-	curl -fsSL https://raw.githubusercontent.com/Fotkurz/horusec/pkg/main/scripts/coverage.sh | bash -s 86 ./internal
+	$(GO) test -coverprofile=coverage.out ./...
+	$(GO) tool cover -func=coverage.out
+
+html-cov: coverage
+	$(GO) tool cover -html=coverage.out
 
 test:
 	$(GO) clean -testcache
