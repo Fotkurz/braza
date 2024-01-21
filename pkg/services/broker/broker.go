@@ -15,7 +15,8 @@
 package broker
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
+
 	"github.com/streadway/amqp"
 
 	brokerConfig "github.com/Fotkurz/braza/pkg/services/broker/config"
@@ -44,7 +45,7 @@ func NewBroker(config brokerConfig.IConfig) (IBroker, error) {
 
 	broker := &Broker{config: config}
 	if err := broker.setupConnection(); err != nil {
-		return nil, errors.Wrap(err, enums.MessageFailedConnectBroker)
+		return nil, fmt.Errorf("%s, err: %v", enums.MessageFailedConnectBroker, err)
 	}
 
 	return broker, broker.setupChannel()
