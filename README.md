@@ -30,8 +30,8 @@ You can simple run ```make build-dev``` and then ```./braza-dev version``` (PS: 
     - ~~Join horusec-engine and horusec-devkit into horusec cli project, for easier development (I'm a lonely dev).~~
 - **Update and Upgrade every package used**
     - ✅ Go mod provides easy management of dependencies, I will be focusing on updating all the dependencies and making it work with the latest version of everything.
-    - Remove deprecated and archived dependencies. (This one may take some time)
-    - Check all the security tools used for licensing, depecration, security related issues.
+    - ✅ Remove deprecated and archived dependencies. (This one may take some time)
+    - Check all the security tools used, for licensing, depecration, security related issues.
 - **Clear the project**
     - Remove legacy pkgs and files that were required by the another horusec projects (Web App, Operator, etc...), and are not required now.
 - **Fix all the tests**
