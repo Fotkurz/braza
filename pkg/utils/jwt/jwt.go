@@ -19,7 +19,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/golang-jwt/jwt"
+	jwt "github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 
 	"github.com/Fotkurz/braza/pkg/utils/env"
@@ -41,9 +41,9 @@ func newTokenNotSignedWithClaims(account *entities.TokenData, expiresAt time.Tim
 		Email:       account.Email,
 		Username:    account.Username,
 		Permissions: permissions,
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: expiresAt.Unix(),
-			IssuedAt:  time.Now().Unix(),
+		RegisteredClaims: jwt.RegisteredClaims{
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 8)),
 			Issuer:    "horusec",
 			Subject:   account.AccountID.String(),
 		},

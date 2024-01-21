@@ -17,7 +17,7 @@ package entities
 import (
 	"testing"
 
-	"github.com/golang-jwt/jwt"
+	jwt "github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 )
@@ -27,7 +27,7 @@ func TestValidate(t *testing.T) {
 		claims := &JWTClaims{
 			Email:    "test@test.com",
 			Username: "test",
-			StandardClaims: jwt.StandardClaims{
+			RegisteredClaims: jwt.RegisteredClaims{
 				Subject: uuid.New().String(),
 			},
 		}

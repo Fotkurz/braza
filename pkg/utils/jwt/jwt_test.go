@@ -16,7 +16,6 @@ package jwt
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 	"testing"
 
@@ -25,11 +24,6 @@ import (
 
 	"github.com/Fotkurz/braza/pkg/utils/jwt/entities"
 )
-
-func testHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
-}
 
 func TestCreateToken(t *testing.T) {
 	t.Run("should success create a signed token with no errors", func(t *testing.T) {
@@ -59,7 +53,7 @@ func TestDecodeToken(t *testing.T) {
 
 		claims, err := DecodeToken(token)
 		assert.NoError(t, err)
-		assert.NoError(t, claims.Valid())
+		assert.NoError(t, claims.Validate())
 	})
 
 	t.Run("should return error invalid signature", func(t *testing.T) {
@@ -77,7 +71,7 @@ func TestDecodeToken(t *testing.T) {
 
 		_, err = DecodeToken(token)
 		assert.Error(t, err)
-		assert.Equal(t, "signature is invalid", err.Error())
+		assert.Equal(t, "token signature is invalid: signature is invalid", err.Error())
 	})
 }
 

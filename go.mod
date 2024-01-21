@@ -9,7 +9,7 @@ require (
 	github.com/go-enry/go-enry/v2 v2.8.6
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0
 	github.com/gocarina/gocsv v0.0.0-20231116093920-b87c2d0e983a
-	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/golang-jwt/jwt/v5 v5.2.0
 	github.com/google/go-github/v40 v40.0.0
 	github.com/google/uuid v1.5.0
 	github.com/iancoleman/strcase v0.3.0
