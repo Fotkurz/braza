@@ -22,7 +22,7 @@ import (
 	"github.com/Fotkurz/braza/pkg/enums/analysis"
 	"github.com/Fotkurz/braza/pkg/enums/languages"
 	"github.com/Fotkurz/braza/pkg/enums/tools"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega/gexec"
 
 	"github.com/Fotkurz/braza/internal/helpers/messages"

@@ -21,7 +21,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/google/go-github/v40/github"
+	"github.com/google/go-github/v58/github"
 )
 
 // Possible releases types that can be passed to trigger the UpVersions

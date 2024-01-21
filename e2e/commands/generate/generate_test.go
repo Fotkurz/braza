@@ -19,7 +19,7 @@ import (
 	"os"
 	"path/filepath"
 
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
@@ -27,20 +27,21 @@ import (
 	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
+var configFilePath string
+
+var _ = BeforeSuite(func() {
+	configFileName := "horusec-config-generate-test.json"
+	configFilePath = testutil.NormalizePathToAssert(filepath.Join(os.TempDir(), configFileName))
+})
+
 var _ = Describe("Run horusec CLI with generate argument", func() {
 	var (
-		outBuffer      = gbytes.NewBuffer()
-		errBuffer      = gbytes.NewBuffer()
-		session        *gexec.Session
-		err            error
-		flags          map[string]string
-		configFilePath string
+		outBuffer = gbytes.NewBuffer()
+		errBuffer = gbytes.NewBuffer()
+		session   *gexec.Session
+		err       error
+		flags     map[string]string
 	)
-
-	BeforeSuite(func() {
-		configFileName := "horusec-config-generate-test.json"
-		configFilePath = testutil.NormalizePathToAssert(filepath.Join(os.TempDir(), configFileName))
-	})
 
 	BeforeEach(func() {
 		flags = map[string]string{

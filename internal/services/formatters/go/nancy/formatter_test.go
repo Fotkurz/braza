@@ -1559,8 +1559,8 @@ const output = `
             "InvalidSemVer":false
         },
         {
-            "Coordinates":"pkg:golang/github.com/onsi/ginkgo@1.7.0",
-            "Reference":"https://ossindex.sonatype.org/component/pkg:golang/github.com/onsi/ginkgo@1.7.0?utm_source=nancy-client\u0026utm_medium=integration\u0026utm_content=1.0.29",
+            "Coordinates":"pkg:golang/github.com/onsi/ginkgo/v2@1.7.0",
+            "Reference":"https://ossindex.sonatype.org/component/pkg:golang/github.com/onsi/ginkgo/v2@1.7.0?utm_source=nancy-client\u0026utm_medium=integration\u0026utm_content=1.0.29",
             "Vulnerabilities":[
                 
             ],

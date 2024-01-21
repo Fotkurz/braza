@@ -22,7 +22,7 @@ import (
 	"runtime"
 
 	"github.com/Fotkurz/braza/pkg/utils/logger/enums"
-	"github.com/onsi/ginkgo"
+	"github.com/onsi/ginkgo/v2"
 )
 
 func GinkgoGetHorusecCmd(horusecCmd string) *exec.Cmd {
