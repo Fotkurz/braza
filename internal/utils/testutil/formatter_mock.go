@@ -15,14 +15,14 @@
 package testutil
 
 import (
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	mockutils "github.com/ZupIT/horusec-devkit/pkg/utils/mock"
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	mockutils "github.com/Fotkurz/braza/pkg/utils/mock"
 	"github.com/stretchr/testify/mock"
 
-	dockerentities "github.com/ZupIT/horusec/internal/entities/docker"
+	dockerentities "github.com/Fotkurz/braza/internal/entities/docker"
 )
 
 type FormatterMock struct {

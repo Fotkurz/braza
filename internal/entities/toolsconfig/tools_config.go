@@ -17,10 +17,10 @@ package toolsconfig
 import (
 	"encoding/json"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
 )
 
 // ToolsConfig is a map of a tool to config for easily index access.

@@ -23,23 +23,23 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/config"
-	dockerentity "github.com/ZupIT/horusec/internal/entities/docker"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	customrules "github.com/ZupIT/horusec/internal/services/custom_rules"
-	"github.com/ZupIT/horusec/internal/services/docker"
-	"github.com/ZupIT/horusec/internal/services/git"
-	"github.com/ZupIT/horusec/internal/utils/file"
-	vulnhash "github.com/ZupIT/horusec/internal/utils/vuln_hash"
+	"github.com/Fotkurz/braza/config"
+	dockerentity "github.com/Fotkurz/braza/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	customrules "github.com/Fotkurz/braza/internal/services/custom_rules"
+	"github.com/Fotkurz/braza/internal/services/docker"
+	"github.com/Fotkurz/braza/internal/services/git"
+	"github.com/Fotkurz/braza/internal/utils/file"
+	vulnhash "github.com/Fotkurz/braza/internal/utils/vuln_hash"
 )
 
 // MaxCharacters is the maximum length of code that a vulnerability can have.
@@ -215,8 +215,8 @@ func (s *Service) ParseFindingsToVulnerabilities(findings []engine.Finding, tool
 func (s *Service) AddNewVulnerabilityIntoAnalysis(vuln *vulnerability.Vulnerability) {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
-	s.analysis.AnalysisVulnerabilities = append(s.analysis.AnalysisVulnerabilities,
-		analysis.AnalysisVulnerabilities{
+	s.analysis.Vulnerabilities = append(s.analysis.Vulnerabilities,
+		analysis.Vulnerabilities{
 			Vulnerability: *vuln,
 		})
 }

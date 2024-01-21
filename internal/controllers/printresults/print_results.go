@@ -23,19 +23,19 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	vulnerabilityenum "github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	vulnerabilityenum "github.com/Fotkurz/braza/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/enums/outputtype"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/sarif"
-	"github.com/ZupIT/horusec/internal/services/sonarqube"
-	"github.com/ZupIT/horusec/internal/utils/file"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/enums/outputtype"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/sarif"
+	"github.com/Fotkurz/braza/internal/services/sonarqube"
+	"github.com/Fotkurz/braza/internal/utils/file"
 )
 
 var ErrOutputJSON = errors.New("{HORUSEC_CLI} error creating and/or writing to the specified file")
@@ -88,7 +88,7 @@ func (pr *PrintResults) Print() (totalVulns int, err error) {
 	}
 
 	pr.checkIfExistVulnerabilityOrNoSec()
-	pr.verifyRepositoryAuthorizationToken()
+	// pr.verifyRepositoryAuthorizationToken()
 	pr.printResponseAnalysis()
 	pr.checkIfExistsErrorsInAnalysis()
 	pr.printWarnings()
@@ -174,11 +174,11 @@ func (pr *PrintResults) printResultsSonarQube() error {
 }
 
 func (pr *PrintResults) checkIfExistVulnerabilityOrNoSec() {
-	for key := range pr.analysis.AnalysisVulnerabilities {
-		vuln := pr.analysis.AnalysisVulnerabilities[key].Vulnerability
+	for key := range pr.analysis.Vulnerabilities {
+		vuln := pr.analysis.Vulnerabilities[key].Vulnerability
 		pr.validateVulnerabilityToCheckTotalErrors(&vuln)
 	}
-	pr.logSeparator(len(pr.analysis.AnalysisVulnerabilities) > 0)
+	pr.logSeparator(len(pr.analysis.Vulnerabilities) > 0)
 }
 
 func (pr *PrintResults) validateVulnerabilityToCheckTotalErrors(vuln *vulnerability.Vulnerability) {
@@ -218,7 +218,7 @@ func (pr *PrintResults) createOutputJSON(content []byte) error {
 	if err != nil {
 		return pr.returnDefaultErrOutputJSON(err)
 	}
-
+	// #nosec G304
 	f, err := os.Create(path)
 	if err != nil {
 		return pr.returnDefaultErrOutputJSON(err)
@@ -247,8 +247,8 @@ func (pr *PrintResults) truncateAndWriteFile(content []byte, f *os.File) error {
 }
 
 func (pr *PrintResults) printTextOutputVulnerability() {
-	for index := range pr.analysis.AnalysisVulnerabilities {
-		vuln := pr.analysis.AnalysisVulnerabilities[index].Vulnerability
+	for index := range pr.analysis.Vulnerabilities {
+		vuln := pr.analysis.Vulnerabilities[index].Vulnerability
 		pr.printTextOutputVulnerabilityData(&vuln)
 	}
 
@@ -278,8 +278,8 @@ func (pr *PrintResults) printTotalVulnerabilities() {
 func (pr *PrintResults) getTotalVulnsBySeverity() map[vulnerabilityenum.Type]map[severities.Severity]int {
 	total := pr.getDefaultTotalVulnBySeverity()
 
-	for index := range pr.analysis.AnalysisVulnerabilities {
-		vuln := pr.analysis.AnalysisVulnerabilities[index].Vulnerability
+	for index := range pr.analysis.Vulnerabilities {
+		vuln := pr.analysis.Vulnerabilities[index].Vulnerability
 		total[vuln.Type][vuln.Severity]++
 	}
 

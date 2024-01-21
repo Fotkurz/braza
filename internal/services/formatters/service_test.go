@@ -23,25 +23,25 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ZupIT/horusec/config"
-	dockerentities "github.com/ZupIT/horusec/internal/entities/docker"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/entities/workdir"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/engines/java"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	dockerentities "github.com/Fotkurz/braza/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/entities/workdir"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/engines/java"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestParseFindingsToVulnerabilities(t *testing.T) {
@@ -95,9 +95,9 @@ func TestParseFindingsToVulnerabilities(t *testing.T) {
 		},
 	}
 
-	require.Len(t, analysis.AnalysisVulnerabilities, len(expectedVulnerabilities))
+	require.Len(t, analysis.Vulnerabilities, len(expectedVulnerabilities))
 	for idx := range expectedVulnerabilities {
-		assert.Equal(t, expectedVulnerabilities[idx], analysis.AnalysisVulnerabilities[idx].Vulnerability)
+		assert.Equal(t, expectedVulnerabilities[idx], analysis.Vulnerabilities[idx].Vulnerability)
 	}
 }
 

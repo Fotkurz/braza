@@ -19,7 +19,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestPrompt_Ask(t *testing.T) {

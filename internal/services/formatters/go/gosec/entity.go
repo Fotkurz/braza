@@ -15,8 +15,8 @@
 package gosec
 
 import (
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
 )
 
 // issue represents the Issues schema from gosec output

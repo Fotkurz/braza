@@ -17,13 +17,13 @@ package analysis_test
 import (
 	"testing"
 
-	. "github.com/onsi/ginkgo"
-	ginkgoconfig "github.com/onsi/ginkgo/config"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
 
 func TestAnalysis(t *testing.T) {
-	ginkgoconfig.GinkgoConfig.FailFast = true
+	suiteCfg, _ := GinkgoConfiguration()
+	suiteCfg.FailFast = true
 	RegisterFailHandler(Fail)
 	defer GinkgoRecover()
 	RunSpecs(t, "Analysis Suite")

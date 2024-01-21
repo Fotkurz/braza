@@ -21,10 +21,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/services/docker/client"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/services/docker/client"
 )
 
 const (

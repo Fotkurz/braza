@@ -18,14 +18,14 @@ import (
 	"context"
 	"io"
 
-	mockutils "github.com/ZupIT/horusec-devkit/pkg/utils/mock"
+	mockutils "github.com/Fotkurz/braza/pkg/utils/mock"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"
 	specs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/stretchr/testify/mock"
 
-	dockerentities "github.com/ZupIT/horusec/internal/entities/docker"
+	dockerentities "github.com/Fotkurz/braza/internal/entities/docker"
 )
 
 type DockerClientMock struct {
@@ -38,9 +38,9 @@ func NewDockerClientMock() *DockerClientMock {
 
 func (m *DockerClientMock) ContainerCreate(_ context.Context, _ *container.Config, _ *container.HostConfig,
 	_ *network.NetworkingConfig, _ *specs.Platform, _ string,
-) (container.ContainerCreateCreatedBody, error) {
+) (container.CreateResponse, error) {
 	args := m.MethodCalled("ContainerCreate")
-	return args.Get(0).(container.ContainerCreateCreatedBody), mockutils.ReturnNilOrError(args, 1)
+	return args.Get(0).(container.CreateResponse), mockutils.ReturnNilOrError(args, 1)
 }
 
 func (m *DockerClientMock) ContainerStart(_ context.Context, _ string, _ types.ContainerStartOptions) error {
@@ -54,13 +54,13 @@ func (m *DockerClientMock) ContainerList(_ context.Context, _ types.ContainerLis
 }
 
 func (m *DockerClientMock) ContainerWait(_ context.Context, _ string, _ container.WaitCondition) (
-	<-chan container.ContainerWaitOKBody, <-chan error,
+	<-chan container.WaitResponse, <-chan error,
 ) {
 	args := m.MethodCalled("ContainerWait")
-	agr1 := make(chan container.ContainerWaitOKBody)
+	agr1 := make(chan container.WaitResponse)
 	agr2 := make(chan error)
 	go func() {
-		agr1 <- args.Get(0).(container.ContainerWaitOKBody)
+		agr1 <- args.Get(0).(container.WaitResponse)
 	}()
 	go func() {
 		agr2 <- mockutils.ReturnNilOrError(args, 1)

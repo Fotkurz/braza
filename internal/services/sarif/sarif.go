@@ -18,11 +18,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
 
-	"github.com/ZupIT/horusec/cmd/app/version"
+	"github.com/Fotkurz/braza/cmd/app/version"
 )
 
 type Sarif struct {
@@ -62,8 +62,8 @@ func (s *Sarif) ConvertVulnerabilityToSarif() (report Report) {
 // This prevents the need from iterating over the entire vuln list multiple times.
 func (s *Sarif) populateReferenceMaps(report *Report) {
 	runsByTool := make(map[string]ReportRun)
-	for index := range s.analysiss.AnalysisVulnerabilities {
-		vuln := &s.analysiss.AnalysisVulnerabilities[index].Vulnerability
+	for index := range s.analysiss.Vulnerabilities {
+		vuln := &s.analysiss.Vulnerabilities[index].Vulnerability
 		if _, exists := runsByTool[string(vuln.SecurityTool)]; !exists {
 			report.Runs = append(report.Runs, s.initToolStructure(vuln, runsByTool))
 		}

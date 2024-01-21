@@ -21,17 +21,17 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestStartCFlawfinder(t *testing.T) {
@@ -50,9 +50,9 @@ func TestStartCFlawfinder(t *testing.T) {
 
 		formatter.StartAnalysis("")
 
-		require.Len(t, analysis.AnalysisVulnerabilities, 1)
+		require.Len(t, analysis.Vulnerabilities, 1)
 
-		vuln := analysis.AnalysisVulnerabilities[0].Vulnerability
+		vuln := analysis.Vulnerabilities[0].Vulnerability
 
 		assert.Equal(t, tools.Flawfinder, vuln.SecurityTool, "Expected flawfinder as security tool")
 		assert.Equal(t, languages.C, vuln.Language, "Expected C as vulnerability language")

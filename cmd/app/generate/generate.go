@@ -18,11 +18,11 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/spf13/cobra"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
 )
 
 type Generate struct {

@@ -18,15 +18,15 @@ import (
 	"errors"
 	"testing"
 
-	entitiesAnalysis "github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
+	entitiesAnalysis "github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 	"github.com/stretchr/testify/assert"
 
-	cliConfig "github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/entities/workdir"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	cliConfig "github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/entities/workdir"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestParseOutput(t *testing.T) {
@@ -52,7 +52,7 @@ func TestParseOutput(t *testing.T) {
 			formatter.StartAnalysis("")
 		})
 
-		assert.Equal(t, 7, len(analysis.AnalysisVulnerabilities))
+		assert.Equal(t, 7, len(analysis.Vulnerabilities))
 	})
 	t.Run("Should success parse output empty to analysis", func(t *testing.T) {
 		analysis := &entitiesAnalysis.Analysis{}
@@ -74,7 +74,7 @@ func TestParseOutput(t *testing.T) {
 			formatter.StartAnalysis("")
 		})
 
-		assert.Len(t, analysis.AnalysisVulnerabilities, 0)
+		assert.Len(t, analysis.Vulnerabilities, 0)
 	})
 	t.Run("Should error rails not found when parse output to analysis", func(t *testing.T) {
 		analysis := &entitiesAnalysis.Analysis{}

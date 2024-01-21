@@ -24,7 +24,7 @@ import (
 	"github.com/docker/docker/api/types/container"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestNewDockerAPI(t *testing.T) {
@@ -47,7 +47,7 @@ func TestNewDockerAPI(t *testing.T) {
 func TestMock(t *testing.T) {
 	t.Run("Should return expected data to ContainerCreate", func(t *testing.T) {
 		m := testutil.NewDockerClientMock()
-		m.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{}, nil)
+		m.On("ContainerCreate").Return(container.CreateResponse{}, nil)
 		_, err := m.ContainerCreate(nil, nil, nil, nil, nil, "")
 		assert.NoError(t, err)
 	})
@@ -59,7 +59,7 @@ func TestMock(t *testing.T) {
 	})
 	t.Run("Should return expected data to ContainerWait", func(t *testing.T) {
 		m := testutil.NewDockerClientMock()
-		m.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		m.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		_, err := m.ContainerWait(nil, "", "")
 		assert.NoError(t, <-err)
 	})

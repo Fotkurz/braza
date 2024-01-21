@@ -15,7 +15,7 @@
 package yarnaudit
 
 import (
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
 )
 
 type issue struct {

@@ -18,11 +18,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 
-	"github.com/ZupIT/horusec/internal/enums/images"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/enums/images"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
 )
 
 // CustomImages is a map of language to a custom image.

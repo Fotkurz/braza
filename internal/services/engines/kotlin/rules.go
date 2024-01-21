@@ -15,10 +15,10 @@
 package kotlin
 
 import (
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
 
-	"github.com/ZupIT/horusec/internal/services/engines"
-	"github.com/ZupIT/horusec/internal/services/engines/jvm"
+	"github.com/Fotkurz/braza/internal/services/engines"
+	"github.com/Fotkurz/braza/internal/services/engines/jvm"
 )
 
 func NewRules() *engines.RuleManager {

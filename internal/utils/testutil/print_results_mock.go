@@ -15,8 +15,8 @@
 package testutil
 
 import (
-	entitiesAnalysis "github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	mockutils "github.com/ZupIT/horusec-devkit/pkg/utils/mock"
+	entitiesAnalysis "github.com/Fotkurz/braza/pkg/entities/analysis"
+	mockutils "github.com/Fotkurz/braza/pkg/utils/mock"
 	"github.com/stretchr/testify/mock"
 )
 

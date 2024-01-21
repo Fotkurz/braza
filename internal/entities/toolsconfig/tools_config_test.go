@@ -18,12 +18,12 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
 )
 
 func TestDefaultValues(t *testing.T) {

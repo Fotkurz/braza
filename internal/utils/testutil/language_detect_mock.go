@@ -15,8 +15,8 @@
 package testutil
 
 import (
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	mockutils "github.com/ZupIT/horusec-devkit/pkg/utils/mock"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	mockutils "github.com/Fotkurz/braza/pkg/utils/mock"
 	"github.com/stretchr/testify/mock"
 )
 

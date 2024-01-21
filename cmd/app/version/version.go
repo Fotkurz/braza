@@ -15,10 +15,10 @@
 package version
 
 import (
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/spf13/cobra"
 
-	"github.com/ZupIT/horusec/config/dist"
+	"github.com/Fotkurz/braza/config/dist"
 )
 
 var (
@@ -30,8 +30,8 @@ var (
 func CreateCobraCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:     "version",
-		Short:   "Shows the current version of installed Horusec",
-		Example: "horusec version",
+		Short:   "Shows the current version of installed Braza",
+		Example: "braza version",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			printVersionInfo()
 			return nil

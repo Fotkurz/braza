@@ -1,0 +1,157 @@
+// Copyright 2020 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package analysis
+
+import (
+	"encoding/json"
+	"time"
+
+	"github.com/google/uuid"
+
+	"github.com/Fotkurz/braza/pkg/enums/analysis"
+)
+
+//nolint:lll // notations need more than 130 characters
+type Analysis struct {
+	ID              uuid.UUID         `json:"id" gorm:"Column:analysis_id" example:"00000000-0000-0000-0000-000000000000"`
+	RepositoryID    uuid.UUID         `json:"repositoryID" gorm:"Column:repository_id" example:"00000000-0000-0000-0000-000000000000"`
+	RepositoryName  string            `json:"repositoryName" gorm:"Column:repository_name" example:"my-project"`
+	WorkspaceID     uuid.UUID         `json:"workspaceID" gorm:"Column:workspace_id" example:"00000000-0000-0000-0000-000000000000"`
+	WorkspaceName   string            `json:"workspaceName" gorm:"Column:workspace_name" example:"my-workspace"`
+	Status          analysis.Status   `json:"status" gorm:"Column:status" enums:"running,success,error" example:"success"`
+	Errors          string            `json:"errors" gorm:"Column:errors"`
+	CreatedAt       time.Time         `json:"createdAt" gorm:"Column:created_at" example:"2021-12-30T23:59:59Z"`
+	FinishedAt      time.Time         `json:"finishedAt" gorm:"Column:finished_at" example:"2021-12-30T23:59:59Z"`
+	Vulnerabilities []Vulnerabilities `json:"vulnerabilities" gorm:"foreignKey:AnalysisID;references:ID"`
+
+	// Warnings this field has an idea of centralizing all warnings that need to printed in the end of the analysis,
+	// simplifying our warning management. After start an analysis we cannot print any message or the loading will
+	// break, the idea are that we add all necessary warnings into this field and avoid these messages during the
+	// loading phase.
+	Warnings []string `json:"-" gorm:"-"`
+}
+
+func (a *Analysis) GetTable() string {
+	return "analysis"
+}
+
+func (a *Analysis) ToBytes() []byte {
+	bytes, _ := json.Marshal(a)
+
+	return bytes
+}
+
+func (a *Analysis) GetID() uuid.UUID {
+	return a.ID
+}
+
+func (a *Analysis) GetIDString() string {
+	return a.ID.String()
+}
+
+func (a *Analysis) ToString() string {
+	return string(a.ToBytes())
+}
+
+func (a *Analysis) Map() map[string]interface{} {
+	return map[string]interface{}{
+		"id":                      a.ID,
+		"createdAt":               a.CreatedAt,
+		"repositoryID":            a.RepositoryID,
+		"repositoryName":          a.RepositoryName,
+		"workspaceName":           a.WorkspaceName,
+		"workspaceID":             a.WorkspaceID,
+		"status":                  a.Status,
+		"errors":                  a.Errors,
+		"finishedAt":              a.FinishedAt,
+		"analysisVulnerabilities": a.Vulnerabilities,
+	}
+}
+
+func (a *Analysis) SetFindOneFilter() map[string]interface{} {
+	return map[string]interface{}{"id": a.GetID()}
+}
+
+func (a *Analysis) SetError(err error) {
+	if err != nil {
+		toAppend := ""
+
+		if len(a.Errors) > 0 {
+			a.Errors += "; " + err.Error()
+
+			return
+		}
+
+		a.Errors += toAppend + err.Error()
+	}
+}
+
+func (a *Analysis) SetAllAnalysisVulnerabilitiesDefaultData() {
+	for key := range a.Vulnerabilities {
+		a.Vulnerabilities[key].SetCreatedAt()
+		a.Vulnerabilities[key].SetAnalysisID(a.ID)
+		a.Vulnerabilities[key].SetVulnerabilityID()
+	}
+}
+
+func (a *Analysis) SetWorkspaceName(workspaceName string) {
+	a.WorkspaceName = workspaceName
+}
+
+func (a *Analysis) SetRepositoryName(repositoryName string) {
+	a.RepositoryName = repositoryName
+}
+
+func (a *Analysis) SetRepositoryID(repositoryID uuid.UUID) {
+	a.RepositoryID = repositoryID
+}
+
+func (a *Analysis) SetFinishedData() {
+	a.FinishedAt = time.Now()
+
+	if a.HasErrors() {
+		a.Status = analysis.Error
+
+		return
+	}
+
+	a.Status = analysis.Success
+}
+
+func (a *Analysis) HasErrors() bool {
+	return len(a.Errors) > 0
+}
+
+func (a *Analysis) GetTotalVulnerabilities() int {
+	return len(a.Vulnerabilities)
+}
+
+func (a *Analysis) GetDataWithoutVulnerabilities() *Analysis {
+	return &Analysis{
+		ID:             a.ID,
+		RepositoryID:   a.RepositoryID,
+		RepositoryName: a.RepositoryName,
+		WorkspaceID:    a.WorkspaceID,
+		WorkspaceName:  a.WorkspaceName,
+		Status:         a.Status,
+		Errors:         a.Errors,
+		CreatedAt:      a.CreatedAt,
+		FinishedAt:     a.FinishedAt,
+	}
+}
+
+func (a *Analysis) AddWarning(warning string) {
+	a.Warnings = append(a.Warnings, warning)
+}

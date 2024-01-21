@@ -15,10 +15,10 @@
 package horusecdart
 
 import (
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
 
-	"github.com/ZupIT/horusec/internal/services/engines/dart"
-	"github.com/ZupIT/horusec/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/services/engines/dart"
+	"github.com/Fotkurz/braza/internal/services/formatters"
 )
 
 func NewFormatter(service formatters.IService) formatters.IFormatter {

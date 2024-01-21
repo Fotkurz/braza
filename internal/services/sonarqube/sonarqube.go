@@ -17,9 +17,9 @@ package sonarqube
 import (
 	"strconv"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
 )
 
 type SonarQube struct {
@@ -34,8 +34,8 @@ func NewSonarQube(analysiss *analysis.Analysis) *SonarQube {
 
 func (sq *SonarQube) ConvertVulnerabilityToSonarQube() (report Report) {
 	report.Issues = []Issue{}
-	for index := range sq.analysis.AnalysisVulnerabilities {
-		vuln := sq.analysis.AnalysisVulnerabilities[index].Vulnerability
+	for index := range sq.analysis.Vulnerabilities {
+		vuln := sq.analysis.Vulnerabilities[index].Vulnerability
 
 		issue := sq.formatReportStruct(&vuln)
 

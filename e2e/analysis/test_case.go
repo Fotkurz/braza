@@ -19,14 +19,14 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	. "github.com/onsi/ginkgo"
+	"github.com/Fotkurz/braza/pkg/enums/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	. "github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega/gexec"
 
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 // Expected struct represents the validations that will be expected when comparing the final results of the analysis

@@ -21,30 +21,30 @@ import (
 	"testing"
 	"time"
 
-	entitiesAnalysis "github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	enumHorusec "github.com/ZupIT/horusec-devkit/pkg/enums/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
+	entitiesAnalysis "github.com/Fotkurz/braza/pkg/entities/analysis"
+	enumHorusec "github.com/Fotkurz/braza/pkg/enums/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
-	cliConfig "github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/entities/workdir"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/copy"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	cliConfig "github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/entities/workdir"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/copy"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func getAnalysis() *entitiesAnalysis.Analysis {
 	return &entitiesAnalysis.Analysis{
-		ID:                      uuid.New(),
-		RepositoryID:            uuid.New(),
-		WorkspaceID:             uuid.New(),
-		Status:                  enumHorusec.Running,
-		Errors:                  "",
-		CreatedAt:               time.Now(),
-		AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
+		ID:              uuid.New(),
+		RepositoryID:    uuid.New(),
+		WorkspaceID:     uuid.New(),
+		Status:          enumHorusec.Running,
+		Errors:          "",
+		CreatedAt:       time.Now(),
+		Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
 	}
 }
 
@@ -96,9 +96,9 @@ func TestFormatter_StartSafety(t *testing.T) {
 		formatter := NewFormatter(service)
 
 		formatter.StartAnalysis("")
-		assert.Equal(t, 23, len(analysis.AnalysisVulnerabilities))
+		assert.Equal(t, 23, len(analysis.Vulnerabilities))
 
-		for _, av := range analysis.AnalysisVulnerabilities {
+		for _, av := range analysis.Vulnerabilities {
 			vuln := av.Vulnerability
 			assert.Equal(t, tools.Safety, vuln.SecurityTool)
 			assert.Equal(t, languages.Python, vuln.Language)

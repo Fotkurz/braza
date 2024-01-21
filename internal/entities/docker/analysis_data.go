@@ -18,9 +18,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
 
-	"github.com/ZupIT/horusec/internal/enums/images"
+	"github.com/Fotkurz/braza/internal/enums/images"
 )
 
 // AnalysisData holds the image and command that will be used to start an

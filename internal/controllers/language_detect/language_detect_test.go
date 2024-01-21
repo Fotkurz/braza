@@ -24,16 +24,16 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/enums/toignore"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/utils/copy"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/enums/toignore"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/utils/copy"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 var tmpPath, _ = filepath.Abs("tmp")

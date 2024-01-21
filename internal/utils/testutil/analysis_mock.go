@@ -17,17 +17,17 @@ package testutil
 import (
 	"time"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	analysisenum "github.com/ZupIT/horusec-devkit/pkg/enums/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	vulnerabilityenum "github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	analysisenum "github.com/Fotkurz/braza/pkg/enums/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	vulnerabilityenum "github.com/Fotkurz/braza/pkg/enums/vulnerability"
 	"github.com/google/uuid"
 
-	vulnhash "github.com/ZupIT/horusec/internal/utils/vuln_hash"
+	vulnhash "github.com/Fotkurz/braza/internal/utils/vuln_hash"
 )
 
 // CreateAnalysisMock creates a mocked plain entity to use in test suites.
@@ -35,18 +35,18 @@ import (
 // nolint: funlen
 func CreateAnalysisMock() *analysis.Analysis {
 	mock := &analysis.Analysis{
-		ID:                      uuid.New(),
-		RepositoryID:            uuid.New(),
-		WorkspaceID:             uuid.New(),
-		Status:                  analysisenum.Success,
-		Errors:                  "",
-		CreatedAt:               time.Now(),
-		FinishedAt:              time.Now(),
-		AnalysisVulnerabilities: []analysis.AnalysisVulnerabilities{},
+		ID:              uuid.New(),
+		RepositoryID:    uuid.New(),
+		WorkspaceID:     uuid.New(),
+		Status:          analysisenum.Success,
+		Errors:          "",
+		CreatedAt:       time.Now(),
+		FinishedAt:      time.Now(),
+		Vulnerabilities: []analysis.Vulnerabilities{},
 	}
 	vuls := ReturnEachTypeOfVulnerability()
 	for key := range vuls {
-		mock.AnalysisVulnerabilities = append(mock.AnalysisVulnerabilities, analysis.AnalysisVulnerabilities{
+		mock.Vulnerabilities = append(mock.Vulnerabilities, analysis.Vulnerabilities{
 			VulnerabilityID: vuls[key].VulnerabilityID,
 			AnalysisID:      mock.ID,
 			Vulnerability:   vuls[key],

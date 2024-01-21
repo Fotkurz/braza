@@ -15,12 +15,12 @@
 package formatters
 
 import (
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 
-	"github.com/ZupIT/horusec/internal/entities/docker"
+	"github.com/Fotkurz/braza/internal/entities/docker"
 )
 
 // IFormatter is the interface that tools implement to run an

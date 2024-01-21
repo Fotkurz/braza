@@ -15,9 +15,9 @@
 package javascript
 
 import (
-	engine "github.com/ZupIT/horusec-engine"
+	engine "github.com/Fotkurz/braza/internal/engine"
 
-	"github.com/ZupIT/horusec/internal/services/engines"
+	"github.com/Fotkurz/braza/internal/services/engines"
 )
 
 func NewRules() *engines.RuleManager {

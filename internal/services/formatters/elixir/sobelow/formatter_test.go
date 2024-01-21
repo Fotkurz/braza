@@ -19,15 +19,15 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func TestSobelowStartAnalysis(t *testing.T) {
@@ -42,9 +42,9 @@ func TestSobelowStartAnalysis(t *testing.T) {
 
 		formatter.StartAnalysis("")
 
-		assert.Len(t, entity.AnalysisVulnerabilities, 4)
+		assert.Len(t, entity.Vulnerabilities, 4)
 
-		for _, v := range entity.AnalysisVulnerabilities {
+		for _, v := range entity.Vulnerabilities {
 			vuln := v.Vulnerability
 
 			assert.Equal(t, tools.Sobelow, vuln.SecurityTool)

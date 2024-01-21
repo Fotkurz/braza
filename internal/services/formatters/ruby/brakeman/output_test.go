@@ -17,7 +17,7 @@ package brakeman
 import (
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
 	"github.com/stretchr/testify/assert"
 )
 

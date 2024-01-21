@@ -14,7 +14,7 @@
 
 package images
 
-import "github.com/ZupIT/horusec-devkit/pkg/enums/languages"
+import "github.com/Fotkurz/braza/pkg/enums/languages"
 
 const (
 	DefaultRegistry = "docker.io"

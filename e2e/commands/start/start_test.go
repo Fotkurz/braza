@@ -20,17 +20,17 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger/enums"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/utils/logger/enums"
 	"github.com/google/uuid"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
 
-	"github.com/ZupIT/horusec/internal/enums/outputtype"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/internal/enums/outputtype"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 var _ = Describe("running binary Horusec with start parameter", func() {
@@ -428,7 +428,7 @@ var _ = Describe("running binary Horusec with start parameter", func() {
 
 		It("Checks if the information severity property was set", func() {
 			Expect(session.Out.Contents()).To(ContainSubstring(`\"enable_information_severity\": true`))
-			Expect(session.Out.Contents()).NotTo(ContainSubstring("Horusec not show info vulnerabilities in this analysis"))
+			Expect(session.Out.Contents()).NotTo(ContainSubstring("Braza not show info vulnerabilities in this analysis"))
 		})
 	})
 

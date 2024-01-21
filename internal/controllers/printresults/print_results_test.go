@@ -22,22 +22,22 @@ import (
 	"strings"
 	"testing"
 
-	entitiesAnalysis "github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
-	vulnerabilityenum "github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	entitiesAnalysis "github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
+	vulnerabilityenum "github.com/Fotkurz/braza/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/enums/outputtype"
-	"github.com/ZupIT/horusec/internal/helpers/messages"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/enums/outputtype"
+	"github.com/Fotkurz/braza/internal/helpers/messages"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 type validateFn func(t *testing.T, tt testcase)
@@ -69,7 +69,7 @@ func TestPrintResultsStartPrintResults(t *testing.T) {
 			name: "Should not return error using default output type text",
 			cfg:  config.Config{},
 			analysis: entitiesAnalysis.Analysis{
-				AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
+				Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
 			},
 		},
 		{
@@ -81,7 +81,7 @@ func TestPrintResultsStartPrintResults(t *testing.T) {
 				},
 			},
 			analysis: entitiesAnalysis.Analysis{
-				AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{
+				Vulnerabilities: []entitiesAnalysis.Vulnerabilities{
 					{
 						VulnerabilityID: uuid.MustParse("57bf7b03-b504-42ed-a026-ea89c81b7f4a"),
 						AnalysisID:      uuid.MustParse("16c70059-aa76-4b00-87d6-ad9941f8603e"),
@@ -131,8 +131,8 @@ func TestPrintResultsStartPrintResults(t *testing.T) {
 			name: "Should return not errors because exists error in analysis",
 			cfg:  config.Config{},
 			analysis: entitiesAnalysis.Analysis{
-				AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
-				Errors:                  "Exists an error when read analysis",
+				Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
+				Errors:          "Exists an error when read analysis",
 			},
 		},
 		{

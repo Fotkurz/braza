@@ -18,10 +18,10 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/enums/confidence"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	"github.com/ZupIT/horusec-engine/text"
+	"github.com/Fotkurz/braza/internal/engine/text"
+	"github.com/Fotkurz/braza/pkg/enums/confidence"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
 	"github.com/stretchr/testify/require"
 )
 

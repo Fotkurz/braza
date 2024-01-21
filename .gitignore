@@ -16,3 +16,9 @@ cmd/horusec/start/examples/
 vendor
 obj/
 /dist
+
+# Development binary
+braza-dev
+
+# self report
+report.json

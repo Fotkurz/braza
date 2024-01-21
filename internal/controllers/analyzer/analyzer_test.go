@@ -25,24 +25,24 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/cli"
-	"github.com/ZupIT/horusec-devkit/pkg/entities/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/languages"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/severities"
-	vulnerabilityenum "github.com/ZupIT/horusec-devkit/pkg/enums/vulnerability"
-	"github.com/ZupIT/horusec-devkit/pkg/utils/logger"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/cli"
+	"github.com/Fotkurz/braza/pkg/entities/vulnerability"
+	"github.com/Fotkurz/braza/pkg/enums/languages"
+	"github.com/Fotkurz/braza/pkg/enums/severities"
+	vulnerabilityenum "github.com/Fotkurz/braza/pkg/enums/vulnerability"
+	"github.com/Fotkurz/braza/pkg/utils/logger"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/workdir"
-	"github.com/ZupIT/horusec/internal/services/docker"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
-	vulnhash "github.com/ZupIT/horusec/internal/utils/vuln_hash"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/workdir"
+	"github.com/Fotkurz/braza/internal/services/docker"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
+	vulnhash "github.com/Fotkurz/braza/internal/utils/vuln_hash"
 )
 
 func BenchmarkAnalyzerAnalyze(b *testing.B) {
@@ -111,8 +111,8 @@ func TestAnalyzerSetFalsePositivesAndRiskAcceptInVulnerabilities(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			analyzer := New(config.New())
 
-			analyzer.analysis.AnalysisVulnerabilities = append(
-				analyzer.analysis.AnalysisVulnerabilities, analysis.AnalysisVulnerabilities{
+			analyzer.analysis.Vulnerabilities = append(
+				analyzer.analysis.Vulnerabilities, analysis.Vulnerabilities{
 					AnalysisID:    uuid.New(),
 					Vulnerability: tt.vulnerability,
 				},
@@ -133,7 +133,7 @@ func TestAnalyzerSetFalsePositivesAndRiskAcceptInVulnerabilities(t *testing.T) {
 
 			analyzer.SetFalsePositivesAndRiskAcceptInVulnerabilities(falsePositiveHashes, riskAcceptHashes)
 
-			for _, vuln := range analyzer.analysis.AnalysisVulnerabilities {
+			for _, vuln := range analyzer.analysis.Vulnerabilities {
 				assert.Equal(t, tt.expectedType, vuln.Vulnerability.Type)
 			}
 		})
@@ -222,9 +222,9 @@ func TestAnalyze(t *testing.T) {
 		dockerMocker.On("CreateLanguageAnalysisContainer").Return("", nil)
 		dockerMocker.On("ImageList").Return([]types.ImageSummary{{}}, nil)
 		dockerMocker.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte(""))), nil)
-		dockerMocker.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{}, nil)
+		dockerMocker.On("ContainerCreate").Return(container.CreateResponse{}, nil)
 		dockerMocker.On("ContainerStart").Return(nil)
-		dockerMocker.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		dockerMocker.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		dockerMocker.On("ContainerLogs").Return(io.NopCloser(bytes.NewReader([]byte(""))), nil)
 		dockerMocker.On("ContainerRemove").Return(nil)
 		dockerMocker.On("ContainerList").Return([]types.Container{{ID: "test"}}, nil)
@@ -276,9 +276,9 @@ func TestAnalyze(t *testing.T) {
 		dockerMocker.On("CreateLanguageAnalysisContainer").Return("", nil)
 		dockerMocker.On("ImageList").Return([]types.ImageSummary{{}}, nil)
 		dockerMocker.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte(""))), nil)
-		dockerMocker.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{}, nil)
+		dockerMocker.On("ContainerCreate").Return(container.CreateResponse{}, nil)
 		dockerMocker.On("ContainerStart").Return(nil)
-		dockerMocker.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		dockerMocker.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		dockerMocker.On("ContainerLogs").Return(io.NopCloser(bytes.NewReader([]byte(""))), nil)
 		dockerMocker.On("ContainerRemove").Return(nil)
 		dockerMocker.On("ContainerList").Return([]types.Container{{ID: "test"}}, nil)
@@ -315,9 +315,9 @@ func TestAnalyze(t *testing.T) {
 		dockerMocker.On("CreateLanguageAnalysisContainer").Return("", nil)
 		dockerMocker.On("ImageList").Return([]types.ImageSummary{{}}, nil)
 		dockerMocker.On("ImagePull").Return(io.NopCloser(bytes.NewReader([]byte(""))), nil)
-		dockerMocker.On("ContainerCreate").Return(container.ContainerCreateCreatedBody{}, nil)
+		dockerMocker.On("ContainerCreate").Return(container.CreateResponse{}, nil)
 		dockerMocker.On("ContainerStart").Return(nil)
-		dockerMocker.On("ContainerWait").Return(container.ContainerWaitOKBody{}, nil)
+		dockerMocker.On("ContainerWait").Return(container.WaitResponse{}, nil)
 		dockerMocker.On("ContainerLogs").Return(io.NopCloser(bytes.NewReader([]byte(""))), nil)
 		dockerMocker.On("ContainerRemove").Return(nil)
 		dockerMocker.On("ContainerList").Return([]types.Container{{ID: "test"}}, nil)
@@ -348,8 +348,8 @@ func TestAnalyze(t *testing.T) {
 		horusecAPI.On("GetAnalysis").Return(new(analysis.Analysis), nil)
 
 		analysiss := new(analysis.Analysis)
-		analysiss.AnalysisVulnerabilities = append(
-			analysiss.AnalysisVulnerabilities, analysis.AnalysisVulnerabilities{
+		analysiss.Vulnerabilities = append(
+			analysiss.Vulnerabilities, analysis.Vulnerabilities{
 				Vulnerability: vulnerability.Vulnerability{
 					Severity: severities.Info,
 				},
@@ -372,6 +372,6 @@ func TestAnalyze(t *testing.T) {
 		_, err := analyzer.Analyze()
 		require.NoError(t, err, "Expected no error to execute analysis")
 
-		assert.Len(t, analysiss.AnalysisVulnerabilities, 1, "Expected that analysis contains info vulnerabilities")
+		assert.Len(t, analysiss.Vulnerabilities, 1, "Expected that analysis contains info vulnerabilities")
 	})
 }

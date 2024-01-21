@@ -19,11 +19,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
+	"github.com/Fotkurz/braza/pkg/entities/analysis"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ZupIT/horusec/internal/utils/copy"
+	"github.com/Fotkurz/braza/internal/utils/copy"
 )
 
 // NormalizePathToAssert Returns path spaced to be compatible with Windows in e2e tests asserts.

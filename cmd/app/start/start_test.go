@@ -26,10 +26,10 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/workdir"
-	"github.com/ZupIT/horusec/internal/utils/copy"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	"github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/workdir"
+	"github.com/Fotkurz/braza/internal/utils/copy"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 var tmpPath, _ = filepath.Abs("tmp")

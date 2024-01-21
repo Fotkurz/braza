@@ -19,28 +19,28 @@ import (
 	"testing"
 	"time"
 
-	entitiesAnalysis "github.com/ZupIT/horusec-devkit/pkg/entities/analysis"
-	enumHorusec "github.com/ZupIT/horusec-devkit/pkg/enums/analysis"
-	"github.com/ZupIT/horusec-devkit/pkg/enums/tools"
+	entitiesAnalysis "github.com/Fotkurz/braza/pkg/entities/analysis"
+	enumHorusec "github.com/Fotkurz/braza/pkg/enums/analysis"
+	"github.com/Fotkurz/braza/pkg/enums/tools"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
-	cliConfig "github.com/ZupIT/horusec/config"
-	"github.com/ZupIT/horusec/internal/entities/toolsconfig"
-	"github.com/ZupIT/horusec/internal/entities/workdir"
-	"github.com/ZupIT/horusec/internal/services/formatters"
-	"github.com/ZupIT/horusec/internal/utils/testutil"
+	cliConfig "github.com/Fotkurz/braza/config"
+	"github.com/Fotkurz/braza/internal/entities/toolsconfig"
+	"github.com/Fotkurz/braza/internal/entities/workdir"
+	"github.com/Fotkurz/braza/internal/services/formatters"
+	"github.com/Fotkurz/braza/internal/utils/testutil"
 )
 
 func getAnalysis() *entitiesAnalysis.Analysis {
 	return &entitiesAnalysis.Analysis{
-		ID:                      uuid.New(),
-		RepositoryID:            uuid.New(),
-		WorkspaceID:             uuid.New(),
-		Status:                  enumHorusec.Running,
-		Errors:                  "",
-		CreatedAt:               time.Now(),
-		AnalysisVulnerabilities: []entitiesAnalysis.AnalysisVulnerabilities{},
+		ID:              uuid.New(),
+		RepositoryID:    uuid.New(),
+		WorkspaceID:     uuid.New(),
+		Status:          enumHorusec.Running,
+		Errors:          "",
+		CreatedAt:       time.Now(),
+		Vulnerabilities: []entitiesAnalysis.Vulnerabilities{},
 	}
 }
 

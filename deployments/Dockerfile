@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.17-alpine AS builder
+FROM golang:1.21.6-alpine AS builder
 
 RUN apk add --no-cache git
 
-ADD . /horusec
+COPY . /horusec
 WORKDIR /horusec
 
 RUN go mod download
