@@ -16,12 +16,9 @@ package jwt
 
 import (
 	"fmt"
-	"net/http"
 	"strings"
 	"time"
 
-	jwtMiddleware "github.com/auth0/go-jwt-middleware"
-	jwtGO "github.com/form3tech-oss/jwt-go"
 	"github.com/golang-jwt/jwt"
 	"github.com/google/uuid"
 
@@ -66,17 +63,6 @@ func parseStringToToken(tokenString string) (*jwt.Token, error) {
 	return jwt.ParseWithClaims(tokenString, &entities.JWTClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return getHorusecJWTKey(), nil
 	})
-}
-
-func AuthMiddleware(next http.Handler) http.Handler {
-	middleware := jwtMiddleware.New(jwtMiddleware.Options{
-		ValidationKeyGetter: func(token *jwtGO.Token) (interface{}, error) {
-			return getHorusecJWTKey(), nil
-		},
-		SigningMethod: jwt.SigningMethodHS256,
-	})
-
-	return middleware.Handler(next)
 }
 
 func GetAccountIDByJWTToken(token string) (uuid.UUID, error) {

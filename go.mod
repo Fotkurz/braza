@@ -3,12 +3,9 @@ module github.com/Fotkurz/braza
 go 1.21
 
 require (
-	github.com/DATA-DOG/go-sqlmock v1.5.2
-	github.com/auth0/go-jwt-middleware v1.0.1
 	github.com/bmatcuk/doublestar/v4 v4.6.1
 	github.com/briandowns/spinner v1.23.0
 	github.com/docker/docker v25.0.0+incompatible
-	github.com/form3tech-oss/jwt-go v3.2.5+incompatible
 	github.com/go-chi/chi v4.1.2+incompatible
 	github.com/go-chi/cors v1.2.1
 	github.com/go-enry/go-enry/v2 v2.8.6
@@ -39,8 +36,6 @@ require (
 	golang.org/x/sync v0.6.0
 	google.golang.org/grpc v1.60.1
 	google.golang.org/protobuf v1.32.0
-	gorm.io/driver/postgres v1.5.4
-	gorm.io/gorm v1.25.5
 )
 
 require (
@@ -73,11 +68,6 @@ require (
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/jackc/pgpassfile v1.0.0 // indirect
-	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
-	github.com/jackc/pgx/v5 v5.4.3 // indirect
-	github.com/jinzhu/inflection v1.0.0 // indirect
-	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
