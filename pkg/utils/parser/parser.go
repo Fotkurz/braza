@@ -21,7 +21,6 @@ import (
 
 	"github.com/google/uuid"
 
-	brokerPacket "github.com/Fotkurz/braza/pkg/services/broker/packet"
 	"github.com/Fotkurz/braza/pkg/utils/parser/enums"
 )
 
@@ -65,12 +64,4 @@ func ParseStringToUUID(id string) uuid.UUID {
 	parsedID, _ := uuid.Parse(id)
 
 	return parsedID
-}
-
-func ParsePacketToEntity(packet brokerPacket.IPacket, entityPointer interface{}) error {
-	if err := json.Unmarshal(packet.GetBody(), entityPointer); err != nil {
-		return checkParseBodyToEntityError(err)
-	}
-
-	return nil
 }

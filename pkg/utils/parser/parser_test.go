@@ -21,11 +21,9 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/streadway/amqp"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/Fotkurz/braza/pkg/entities/cli"
-	"github.com/Fotkurz/braza/pkg/services/broker/packet"
 	"github.com/Fotkurz/braza/pkg/utils/parser/enums"
 )
 
@@ -86,23 +84,5 @@ func TestParseStringToUUID(t *testing.T) {
 		id := uuid.New()
 
 		assert.Equal(t, id, ParseStringToUUID(id.String()))
-	})
-}
-
-func TestParsePacketToEntity(t *testing.T) {
-	t.Run("should success parse packet to entity", func(t *testing.T) {
-		pkg := packet.NewPacket(&amqp.Delivery{})
-		pkg.SetBody((&cli.AnalysisData{RepositoryName: "test"}).ToBytes())
-
-		entity := &cli.AnalysisData{}
-		assert.NoError(t, ParsePacketToEntity(pkg, &entity))
-		assert.Equal(t, "test", entity.RepositoryName)
-	})
-
-	t.Run("should error parsing invalid data", func(t *testing.T) {
-		pkg := packet.NewPacket(&amqp.Delivery{})
-
-		entity := &cli.AnalysisData{}
-		assert.Error(t, ParsePacketToEntity(pkg, &entity))
 	})
 }
